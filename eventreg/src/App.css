@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(11).jpg");
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 .App-logo {
@@ -36,3 +42,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* .container{
+  background-image: url("https://wallpapercave.com/wp/wp3191224.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+} */

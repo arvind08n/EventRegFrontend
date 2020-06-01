@@ -8,10 +8,13 @@ class Main extends Component{
     }
 
     render(){
-        <Switch>
-            <Route exact path ="/" component={StarterComponent} />
-        </Switch>
+        return(
+            <Switch>
+                <Route exact path ="/" component={StarterComponent} />
+            </Switch>
+        )
     }
 }
+
 
 export default Main;
