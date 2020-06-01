@@ -45,7 +45,7 @@ class  StarterComponent  extends Component {
         console.log(evt);
         console.log(this.username.value);
         evt.preventDefault();
-        axios.post("http://localhost:8082/api/admin/loginRoute/adminlogin", { username: this.username.value, password:this.password.value })
+        axios.post("http://localhost:8082/admin/login", { username: this.username.value, password:this.password.value })
             .then((res) => {
                 if(res.data.success) {
                     console.log(res);
