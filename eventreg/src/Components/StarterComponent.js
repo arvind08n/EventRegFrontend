@@ -54,7 +54,7 @@ class  StarterComponent  extends Component {
                                     <CardTitle>User</CardTitle>
                                     <CardSubtitle>Welcome User !!</CardSubtitle>
                                     <CardText>Click on the below button to enter..</CardText>
-                                    <Button>Click me</Button>
+                                    <Button color="danger">Click me</Button>
                                 </CardBody>
                             </Card>
                         </div>
@@ -65,7 +65,7 @@ class  StarterComponent  extends Component {
                                     <CardTitle>Admin</CardTitle>
                                     <CardSubtitle>Welcome back Admin !!!</CardSubtitle>
                                     <CardText>Click on the below button to login..</CardText>
-                                    <Button onClick={this.toggleModal}>Login</Button>
+                                    <Button color="danger" onClick={this.toggleModal}>Login</Button>
                                 </CardBody>
                             </Card>
                         </div>
