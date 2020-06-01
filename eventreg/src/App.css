@@ -13,6 +13,14 @@
   pointer-events: none;
 }
 
+
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+  background: #090342 ;
+  color:floralwhite;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -43,10 +51,3 @@
   }
 }
 
-/* .container{
-  background-image: url("https://wallpapercave.com/wp/wp3191224.jpg");
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-
-} */
