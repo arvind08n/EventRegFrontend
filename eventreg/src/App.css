@@ -1,60 +1,37 @@
-.App {
-  text-align: center;
-  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(11).jpg");
-  position: fixed;
-  min-width: 100%;
-  min-height: 100%;
-  background-size: cover;
-  background-position: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 .row-header{
   margin:0px auto;
   padding:0px auto;
 }
 
+.bg{
+  background-image: url("https://i.pinimg.com/originals/a0/74/a8/a074a8a62cf3c17b39c70aa1270ef4eb.jpg");
+  
+  background-size: cover;
+
+  min-width: 100%;
+
+  min-height: 100%;
+}
+
 .jumbotron {
   padding:70px 30px 70px 30px;
   margin:0px auto;
-  background: #090342 ;
+  background: #1a0330 ;
   color:floralwhite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+
+
+
+
+.align{
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.cardAlign{
-  border-radius: 50px;
+.pos{
+  position: relative;
 }

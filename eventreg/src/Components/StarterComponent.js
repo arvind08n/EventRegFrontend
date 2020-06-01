@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle,Jumbotron, CardSubtitle, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import '../App.css';
+import axios from "axios";
 import img from '../assets/admin.png';
 
 const Jumbo = () => {
@@ -24,7 +26,9 @@ class  StarterComponent  extends Component {
         super(props)
 
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            authenticated: false,
+            token: null
 
         };
 
@@ -38,69 +42,96 @@ class  StarterComponent  extends Component {
     handleLogin(evt)
     {
         this.toggleModal();
+        console.log(evt);
+        console.log(this.username.value);
         evt.preventDefault();
+        axios.post("http://localhost:8082/api/admin/loginRoute/adminlogin", { username: this.username.value, password:this.password.value })
+            .then((res) => {
+                if(res.data.success) {
+                    console.log(res);
+                    this.setState({
+                        authenticated: true,
+                        token: res.data.token
+                    })
+                }
+            })
+            .catch((err) => console.log(err));   
     }
     render(){
-        return(
-            <div>
-                <Jumbo />
-                <div className="container">
+        if(this.state.authenticated){
+            return <Redirect to={
+                {
+                    pathname: "/Dashboard",
+                    state: {
+                        token : this.state.token
+                    } 
+                }
+            }/>
+        }
+        else{
+            return(
+                
+                <div className="bg">
                     
-                    <div className="row align-items-start">
-                        <div className="col-12  col-md-5 m-auto">
-                            <Card className="cardAlign">
-                                <CardImg top  src="https://source.wustl.edu/wp-content/uploads/2017/06/shutterstock_403785310-760x474.jpg" alt="Card image cap" />
-                                <CardBody>
-                                    <CardTitle>User</CardTitle>
-                                    <CardSubtitle>Welcome User !!</CardSubtitle>
-                                    <CardText>Click on the below button to enter..</CardText>
-                                    <Button color="danger">Click me</Button>
-                                </CardBody>
-                            </Card>
-                        </div>
-                        <div className="col-12  col-md-5 m-auto">
-                            <Card className="cardAlign">
-                                <CardImg top  src={img} alt="Card image cap" />
-                                <CardBody>
-                                    <CardTitle>Admin</CardTitle>
-                                    <CardSubtitle>Welcome back Admin !!!</CardSubtitle>
-                                    <CardText>Click on the below button to login..</CardText>
-                                    <Button color="danger" onClick={this.toggleModal}>Login</Button>
-                                </CardBody>
-                            </Card>
-                        </div>
+                    <Jumbo />
+                    <div className="container pos">
                         
-                        
+                        <div className="row align-items-start align">
+                            <div className="col-12  col-md m-1">
+                                <Card className="cardAlign">
+                                    <CardImg top  src="https://source.wustl.edu/wp-content/uploads/2017/06/shutterstock_403785310-760x474.jpg" alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle className="align">User</CardTitle>
+                                        <CardSubtitle>Welcome User !!</CardSubtitle>
+                                        <CardText>Click on the below button to enter..</CardText>
+                                        <Button color="danger">Click me</Button>
+                                    </CardBody>
+                                </Card>
+                            </div>
+                            <div className="col-12  col-md m-1">
+                                <Card className="cardAlign">
+                                    <CardImg top  src={img} alt="Card image cap" />
+                                    <CardBody>
+                                        <CardTitle>Admin</CardTitle>
+                                        <CardSubtitle>Welcome back Admin !!!</CardSubtitle>
+                                        <CardText>Click on the below button to login..</CardText>
+                                        <Button color="danger" onClick={this.toggleModal}>Login</Button>
+                                    </CardBody>
+                                </Card>
+                            </div>
+                            
+                            
+                        </div>
                     </div>
+                    <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                            <ModalHeader toggle={this.toggleModal}> Login</ModalHeader>
+                            <ModalBody>
+                                <Form onSubmit={this.handleLogin}>
+                                    <FormGroup>
+                                        <Label htmlFor="username">Username</Label>
+                                        <Input type="text" id="username" name="username" innerRef={(input) => this.username = input } />
+                                    </FormGroup>
+
+                                    <FormGroup>
+                                        <Label htmlFor="password">Password</Label>
+                                        <Input type="password" id="password" name="password" innerRef={(input) => this.password = input } />
+                                    </FormGroup>
+
+                                    <FormGroup check>
+                                        <Label check>
+                                            <Input type="checkbox" name="remember" innerRef={(input) => this.remember = input } />
+                                            Remember me
+                                        </Label>
+                                    </FormGroup>
+                                    <Button type="submit" value="submit" color="primary">Login</Button>
+                                </Form>
+                            </ModalBody>
+                        </Modal>
                 </div>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                        <ModalHeader toggle={this.toggleModal}> Login</ModalHeader>
-                        <ModalBody>
-                            <Form onSubmit={this.handleLogin}>
-                                <FormGroup>
-                                    <Label htmlFor="username">Username</Label>
-                                    <Input type="text" id="username" name="username" innerRef={(input) => this.username = input } />
-                                </FormGroup>
 
-                                <FormGroup>
-                                    <Label htmlFor="password">Password</Label>
-                                    <Input type="password" id="password" name="password" innerRef={(input) => this.password = input } />
-                                </FormGroup>
-
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" name="remember" innerRef={(input) => this.remember = input } />
-                                        Remember me
-                                    </Label>
-                                </FormGroup>
-                                <Button type="submit" value="submit" color="primary">Login</Button>
-                            </Form>
-                        </ModalBody>
-                    </Modal>
-            </div>
-
-            
-        );
+                
+            );
+            }
     }
 }
 
