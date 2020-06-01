@@ -9,9 +9,11 @@ class Main extends Component{
 
     render(){
         return(
-            <Switch>
-                <Route exact path ="/" component={StarterComponent} />
-            </Switch>
+            <div>
+                <Switch>
+                    <Route exact path ="/" component={StarterComponent} />
+                </Switch>
+            </div>
         )
     }
 }

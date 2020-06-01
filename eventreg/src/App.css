@@ -13,6 +13,10 @@
   pointer-events: none;
 }
 
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
 
 .jumbotron {
   padding:70px 30px 70px 30px;
@@ -51,3 +55,6 @@
   }
 }
 
+.cardAlign{
+  border-radius: 50px;
+}
