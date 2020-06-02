@@ -16,7 +16,7 @@ class Main extends Component{
                 <Switch>
                     <Route exact path ="/" component={StarterComponent} />
                     <Route path="/dashboard" component={Dashboard} />
-                    <Route exact path = "/users" component={EventList} />
+                    <Route  path = "/users" component={EventList} />
                 </Switch>
             </div>
         )

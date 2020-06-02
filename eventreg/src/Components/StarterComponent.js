@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle,Jumbotron, CardSubtitle, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import '../App.css';
 import axios from "axios";
@@ -80,18 +80,20 @@ class  StarterComponent  extends Component {
                     <div className="container pos">
                         
                         <div className="row align-items-start align">
-                            <div className="col-12  col-md m-1">
+                            <div className="col-12  col-md m-1 starter">
                                 <Card className="cardAlign">
                                     <CardImg top  src="https://source.wustl.edu/wp-content/uploads/2017/06/shutterstock_403785310-760x474.jpg" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle className="align">User</CardTitle>
                                         <CardSubtitle>Welcome User !!</CardSubtitle>
                                         <CardText>Click on the below button to enter..</CardText>
-                                        <Button color="danger">Click me</Button>
+                                        <Link to="/users">
+                                            <Button color="danger">Click me</Button>
+                                        </Link>
                                     </CardBody>
                                 </Card>
                             </div>
-                            <div className="col-12  col-md m-1">
+                            <div className="col-12  col-md m-1 starter">
                                 <Card className="cardAlign">
                                     <CardImg top  src={img} alt="Card image cap" />
                                     <CardBody>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button, Modal, ModalBody, ModalHeader, ModalFooter, Form, FormGroup, FormText, Input, Label } from 'reactstrap';
 import axios  from 'axios';
+import "../App.css"
 
 
 class Dashboard extends Component{
@@ -78,10 +79,8 @@ class Dashboard extends Component{
                         <Form onSubmit = {this.onSubmit}>
                         <FormGroup>
                             <Label for="image">Event Poster</Label>
-                            <Input type="file" name="image" id="image" value={this.state.image} onChange={this.onChange} />
-                            <FormText color="muted">
-                            Input a suitable poster which describes your event precisely...
-                            </FormText>
+                            <Input type="text" name="image" id="image" placeholder="Enter image url" value={this.state.image} onChange={this.onChange} />
+                            
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="name">

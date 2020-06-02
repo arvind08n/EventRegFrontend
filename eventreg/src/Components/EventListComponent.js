@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Row, Col } from 'reactstrap';
 import EventCard from './EventCardComponent';
 
 
@@ -14,7 +15,7 @@ class EventList extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/users/events')
+            .get('http://localhost:8082/user/events')
             .then(res => {
                 this.setState({
                     events: res.data
@@ -40,17 +41,19 @@ class EventList extends Component{
         }
 
         return(
+            <div className="EventList">
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <br />
-                        <h2>Events List</h2>
+                        <h2 className="display-4 text-center">Events List</h2>
 
                     </div>
-                    <div className="col-12 col-md-3 m-1">
-                        {eventList}
-                    </div>
                 </div>
+                <div className="list">
+                    {eventList}
+                </div>
+            </div>
             </div>
         );
         
