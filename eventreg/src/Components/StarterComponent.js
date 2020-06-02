@@ -34,6 +34,7 @@ class  StarterComponent  extends Component {
 
         this.toggleModal = this.toggleModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        axios.defaults.withCredentials = true;
     }
 
     toggleModal(){
@@ -53,9 +54,11 @@ class  StarterComponent  extends Component {
                         authenticated: true,
                         token: res.data.token
                     })
+                    localStorage.setItem("token",res.data.token);
                 }
             })
             .catch((err) => console.log(err));   
+        
     }
     render(){
         if(this.state.authenticated){
@@ -134,5 +137,6 @@ class  StarterComponent  extends Component {
             }
     }
 }
+
 
 export default StarterComponent;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button, Modal, ModalBody, ModalHeader, ModalFooter, Form, FormGroup, FormText, Input, Label } from 'reactstrap';
-import { axios } from 'axios';
+import axios  from 'axios';
 
 
 class Dashboard extends Component{
@@ -16,6 +16,7 @@ class Dashboard extends Component{
         };
         
         this.toggleModal = this.toggleModal.bind(this);
+        
     
     }
 
@@ -32,6 +33,9 @@ class Dashboard extends Component{
     onSubmit = e => {
         this.toggleModal();
         e.preventDefault();
+        
+        axios.defaults.withCredentials = true;
+        axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem("token")}`}
 
         const data = {
             image : this.state.image,
@@ -40,20 +44,19 @@ class Dashboard extends Component{
             lastdate: this.state.lastdate
         };
 
-        // axios
-        //     .post('http://localhost:8082/admin/createEvent', data)
-        //     .then(res => {
-        //         this.setState({
-        //             image: '',
-        //             name: '',
-        //             description: '',
-        //             lastdate: ''
-        //         })
-        //         this.props.history.push('/dashboard');
-        //     })
-        //     .catch(err => {
-        //         console.log("Error in createEvent");
-        //     })
+        axios.post('http://localhost:8082/admin/dashboard/createEvent', data)
+            .then(res => {
+                this.setState({
+                    image: '',
+                    name: '',
+                    description: '',
+                    lastdate: ''
+                })
+                this.props.history.push('/dashboard');
+            })
+            .catch(err => {
+                console.log("Error in createEvent");
+            })
     };
 
     render(){
@@ -75,7 +78,7 @@ class Dashboard extends Component{
                         <Form onSubmit = {this.onSubmit}>
                         <FormGroup>
                             <Label for="image">Event Poster</Label>
-                            <Input type="file" name="file" id="image" value={this.state.image} onChange={this.onChange} />
+                            <Input type="file" name="image" id="image" value={this.state.image} onChange={this.onChange} />
                             <FormText color="muted">
                             Input a suitable poster which describes your event precisely...
                             </FormText>
