@@ -3,7 +3,7 @@ import { Switch, Router, Redirect, Route } from 'react-router-dom';
 import StarterComponent from './StarterComponent';
 import Dashboard from './DashboardComponent';
 import EventList from './EventListComponent';
-
+import UserReg from './RegisterComponent';
 
 class Main extends Component{
     constructor(props){
@@ -17,6 +17,7 @@ class Main extends Component{
                     <Route exact path ="/" component={StarterComponent} />
                     <Route path="/dashboard" component={Dashboard} />
                     <Route  path = "/users" component={EventList} />
+                    <Route path = "/register-user" component={UserReg} />
                 </Switch>
             </div>
         )
