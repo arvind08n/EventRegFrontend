@@ -1,5 +1,29 @@
 import React, { Component } from 'react';
-import { Jumbotron } from 'reactstrap';
+import { Jumbotron, FormGroup, Form, FormText, Label, Input, Button } from 'reactstrap';
+import '../App.css'
+
+
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
+const isNumber = (val) => !isNaN(Number(val));
+const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
+
+const Jumbo = () => {
+    return(
+        <Jumbotron className="jumbotron">
+            <div className="container">
+                <div className="row row-header">
+                    <div className="col-12 col-sm-12">
+                        <h1>Welcome</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </Jumbotron>
+    )
+}
 
 class UserReg extends Component{
     constructor(props){
@@ -68,22 +92,41 @@ class UserReg extends Component{
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <h1>User Registration</h1>
-                    <label>Full Name : </label> <input type="text" value={this.state.fullName} onChange={this.namehandler}/><br/>
-                    <label>User Name : </label> <input type="text" value={this.state.userId} onChange={this.idhandler}/><br/>
-                    <label>Password : </label> <input type="password" value={this.state.password} onChange={this.passwordhandler}/><br/>
-                    <label>Gender : </label> 
-                        <select onChange={this.genderhandler} defaultValue="Select Gender">
-                            <option defaultValue>Select Gender</option>
-                            <option value>Male</option>
-                            <option value>Female</option>
-                            <option value>Other</option>
-                        </select><br/>
-                    <label>DOB : </label> <input type="date" value={this.state.dob} onChange={this.dobhandler}/><br/>
-                    <label>Mobile no. : </label> <input type="text" value={this.state.mobileNo} onChange={this.mobilehandler}/><br/>
-                    <input type="submit" value="SUBMIT"/>
-                </form>
+                <Jumbo />
+            <div className="container">
+                <Form onSubmit={this.handleSubmit}>
+                    <h1>Registration</h1>
+                    <FormGroup>
+                        <Label>Full Name : </Label>
+                        <Input type="text" value={this.state.fullName} onChange={this.namehandler}/>
+                    </FormGroup>
+                     <br/>
+                     <FormGroup>
+                        <Label>User Name : </Label>
+                        <Input type="text" value={this.state.userId} onChange={this.idhandler}/><br/>
+                     </FormGroup>
+                     
+                     <FormGroup>
+                        <Label>Password : </Label>
+                        <Input type="password" value={this.state.password} onChange={this.passwordhandler}/><br/>
+                     </FormGroup>
+
+                     <FormGroup>
+                        <Label>DOB : </Label>
+                        <Input type="date" value={this.state.dob} onChange={this.dobhandler}/><br/> 
+                     </FormGroup>
+                     <FormGroup>
+                         <Label>Email : </Label>
+                         <Input type="email" />
+                     </FormGroup>
+                     <FormGroup>
+                        <Label>Mobile no. : </Label>
+                        <Input type="text" value={this.state.mobileNo} onChange={this.mobilehandler}/><br/>
+                     </FormGroup>
+                     
+                     <Button type="submit" value="submit" color="primary" size="btn-lg" block>Register</Button>
+                </Form>
+            </div>
             </div>
         )
     }
