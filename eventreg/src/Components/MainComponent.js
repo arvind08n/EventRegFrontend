@@ -16,7 +16,7 @@ class Main extends Component{
                 <Switch>
                     <Route exact path ="/" component={StarterComponent} />
                     <Route path="/dashboard" component={Dashboard} />
-                    <Route  path = "/users" component={EventList} />
+                    <Route exact path = "/:userId/events" component={EventList} />
                     <Route path = "/register-user" component={UserReg} />
                 </Switch>
             </div>

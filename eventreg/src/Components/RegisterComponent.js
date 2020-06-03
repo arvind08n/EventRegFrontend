@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Jumbotron, FormGroup, Form, FormText, Label, Input, Button } from 'reactstrap';
-import '../App.css'
+import { Jumbotron, FormGroup, Form, FormText, Label, Input, Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import '../App.css';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
+import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 
-const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
-const minLength = (len) => (val) => val && (val.length >= len);
-const isNumber = (val) => !isNaN(Number(val));
-const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 
 const Jumbo = () => {
@@ -30,102 +28,92 @@ class UserReg extends Component{
         super(props);
 
         this.state={
-            fullName: "",
-            userId: "",
-            password: "",
-            gender: "",
-            dob: "",
-            mobileNo: ""
-        }
-
+            authenticate: false,
+            userId: null,
+            usertoken: null
+        };
+        
+        
         this.handleSubmit=this.handleSubmit.bind(this)
+        axios.defaults.withCredentials= true;
+        
     }
 
-    namehandler = (event) => {
-        this.setState({
-            fullName: event.target.value
-        })
-    }
-
-    idhandler = (event) => {
-        this.setState({
-            userId: event.target.value
-        })
-    }
-
-    passwordhandler = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
-
-    genderhandler = (event) => {
-        this.setState({
-            gender: event.target.value
-        })
-    }   
-
-    dobhandler = (event) => {
-        this.setState({
-            dob: event.target.value
-        })
-    }   
-
-    mobilehandler = (event) => {
-        this.setState({
-            mobileNo: event.target.value
-        })
-    }
-
-    handleSubmit = (event) => {
-        this.setState({
-            fullName: "",
-            userId: "",
-            password: "",
-            gender: "",
-            dob: "",
-            mobileNo: ""           
-        })
-        event.preventDefault()
+    handleSubmit(event) {
+        
+        event.preventDefault();
+        axios.post("http://localhost:8082/user/signup", { fullname: this.fullname.value, username: this.username.value, password: this.password.value, dob: this.dob.value, email: this.email.value, mobile: this.mobile.value })
+            .then((res) => {
+                if(res.data.success){
+                    console.log(res);
+                    this.setState({
+                        authenticate: true,
+                        userId: res.data.userId,
+                        usertoken: res.data.token
+                    });
+                    localStorage.setItem("usertoken", res.data.token);
+                    localStorage.setItem("userId", res.data.userId);
+                }
+            })
+            .catch((err) => console.log(err));
     }
 
     render(){
+        if(this.state.authenticate){
+            console.log(this.state.userId);
+            return <Redirect to={
+                {
+                    pathname: "/" + localStorage.getItem("userId") + "/events",
+
+                }
+            }/>
+        }
         return(
+            
             <div>
                 <Jumbo />
             <div className="container">
-                <Form onSubmit={this.handleSubmit}>
+                <AvForm onSubmit={this.handleSubmit}>
                     <h1>Registration</h1>
-                    <FormGroup>
-                        <Label>Full Name : </Label>
-                        <Input type="text" value={this.state.fullName} onChange={this.namehandler}/>
-                    </FormGroup>
+                    <AvField name="fullname" id="fullname" label="Full Name" type="text" errorMessage="Invalid" innerRef={(input) => this.fullname = input} validate={{
+                        required: {value: true},
+                        minLength: {value: 4},
+                        maxLength: {value: 16}
+                    }} />
+                    
                      <br/>
-                     <FormGroup>
-                        <Label>User Name : </Label>
-                        <Input type="text" value={this.state.userId} onChange={this.idhandler}/><br/>
-                     </FormGroup>
                      
-                     <FormGroup>
-                        <Label>Password : </Label>
-                        <Input type="password" value={this.state.password} onChange={this.passwordhandler}/><br/>
-                     </FormGroup>
+                     <AvField name="username" id="username" label="Username" type="text" errorMessage="Username must be greater than 3 and less than 16" innerRef={(input) => this.username = input} validate={{
+                         required: {value: true},
+                         pattern: {value: '^[A-Za-z0-9]+$'},
+                         minLength: {value: 4},
+                         maxLength: {value: 16}
+                     }} />
 
-                     <FormGroup>
-                        <Label>DOB : </Label>
-                        <Input type="date" value={this.state.dob} onChange={this.dobhandler}/><br/> 
-                     </FormGroup>
-                     <FormGroup>
-                         <Label>Email : </Label>
-                         <Input type="email" />
-                     </FormGroup>
-                     <FormGroup>
-                        <Label>Mobile no. : </Label>
-                        <Input type="text" value={this.state.mobileNo} onChange={this.mobilehandler}/><br/>
-                     </FormGroup>
+                     <AvField name="password" id="password" label="Password" type="password" errorMessage="Minimum 8 characters" innerRef={(input) => this.password = input} validate={{
+                         required: true,
+                         minLength: 8
+                     }}/>
+                    
+                     <AvField name="dob" id="dob" label="DOB" type="date" errorMessage="Required" innerRef={(input) => this.dob = input} validate={{
+                         required: true
+                     }}/>
                      
-                     <Button type="submit" value="submit" color="primary" size="btn-lg" block>Register</Button>
-                </Form>
+
+
+                     <AvField name="email" id="email" label="Email" type="email" errorMessage="required" innerRef={(input) => this.email = input} validate={{
+                         required: true 
+                     }} />
+                     
+                     <AvField name="mobile" id="mobile" label="Mobile No" type="text" innerRef={(input) => this.mobile = input} validate={{
+                         number: true,
+                         required: true
+                        }} />
+
+                     
+                     
+                     <Button type="submit" value="submit" color="danger" size="btn-lg" block>Register</Button>
+                </AvForm>
             </div>
             </div>
         )

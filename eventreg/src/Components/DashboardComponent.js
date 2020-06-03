@@ -79,7 +79,7 @@ class Dashboard extends Component{
                         <Form onSubmit = {this.onSubmit}>
                         <FormGroup>
                             <Label for="image">Event Poster</Label>
-                            <Input type="text" name="image" id="image" placeholder="Enter image url" value={this.state.image} onChange={this.onChange} />
+                            <Input type="file" name="image" id="image" placeholder="Enter image url" value={this.state.image} onChange={this.onChange} />
                             
                         </FormGroup>
                         <FormGroup>
