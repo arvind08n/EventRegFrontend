@@ -15,7 +15,7 @@ class EventList extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/user/events')
+            .get('http://localhost:8082/user/:userId/events')
             .then(res => {
                 this.setState({
                     events: res.data

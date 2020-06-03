@@ -13,7 +13,8 @@ class Dashboard extends Component{
             image: '',
             name: '',
             description: '',
-            lastdate: ''
+            lastdate: '',
+            eventfee: ''
         };
         
         this.toggleModal = this.toggleModal.bind(this);
@@ -49,14 +50,17 @@ class Dashboard extends Component{
             image : this.state.image,
             name: this.state.name,
             description: this.state.description,
-            lastdate: this.state.lastdate
+            lastdate: this.state.lastdate,
+            eventfee: this.state.eventfee 
         };
 
         let form = new FormData();
         form.set("name",this.state.name);
         form.set("description",this.state.description);
         form.set("lastdate",this.state.lastdate);
+        form.set("eventfee",this.state.eventfee)
         form.append("image",this.state.image);
+        
 
         axios.post('http://localhost:8082/admin/dashboard/createEvent', form,{headers: {"Content-type": "multipart/form-data"}})
             .then(res => {
@@ -64,7 +68,8 @@ class Dashboard extends Component{
                     image: '',
                     name: '',
                     description: '',
-                    lastdate: ''
+                    lastdate: '',
+                    eventfee: ''
                 })
                 this.props.history.push('/dashboard');
             })
@@ -108,6 +113,10 @@ class Dashboard extends Component{
                         <FormGroup>
                             <Label htmlFor="lastdate">Last Date</Label>
                             <Input type="date" name="lastdate" value={this.state.lastdate} onChange={this.onChange}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="eventfee">Event Fee</Label>
+                            <Input type="eventfee" name="eventfee" value={this.state.eventfee} onChange={this.onChange} />
                         </FormGroup>
                         <Button type="submit" color="danger" value="submit">Submit</Button>
                         </Form>
