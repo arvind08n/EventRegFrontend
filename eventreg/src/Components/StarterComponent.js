@@ -27,13 +27,15 @@ class  StarterComponent  extends Component {
 
         this.state = {
             isModalOpen: false,
-            
+            isModalLogin: false,
             authenticated: false,
             token: null,
-           
+            authenticateUser: false,
+            userToken: null,
+            userId: null
 
         };
-        
+        this.toggleModalLogin = this.toggleModalLogin.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         axios.defaults.withCredentials = true;
@@ -42,15 +44,23 @@ class  StarterComponent  extends Component {
     toggleModal(){
         this.setState({ isModalOpen: !this.state.isModalOpen });
     }
-    
+    toggleModalLogin(){
+        this.setState({ isModalLogin: !this.state.isModalLogin});
+    }
 
-    // handleUserLogin(evt){
-    //     this.toggleModalLogin();
-    //     console.log(evt);
-    //     console.log(this.username.value);
-    //     evt.preventDefault();
+    handleUserLogin(evt){
+        this.toggleModalLogin();
+        console.log(evt);
+        console.log(this.username.value);
+        evt.preventDefault();
+        axios.post("http://localhost:8082/user/login", {username: this.user.value, password: this.pass.value})
+            .then((res)=>{
+                if(res.data.success){
+                    var red = "/" + res.data
+                }
+            })
 
-    // }
+    }
 
     handleLogin(evt)
     {
@@ -73,7 +83,16 @@ class  StarterComponent  extends Component {
         
     }
     render(){
-        
+        if(this.state.authenticateUser){
+            return <Redirect to={
+                {
+                    pathname: "/user/events",
+                    state: {
+                        userToken : this.state.userToken
+                    } 
+                }
+            }/>
+        }
         if(this.state.authenticated){
             return <Redirect to={
                 {
@@ -145,7 +164,31 @@ class  StarterComponent  extends Component {
                                 </Form>
                             </ModalBody>
                         </Modal>
-                        
+                        <Modal isOpen={this.state.isModalLogin} toggle={this.toggleModalLogin}>
+                            <ModalHeader toggle={this.toggleModalLogin}> Login/Register</ModalHeader>
+                            <ModalBody>
+                                <Form onSubmit={this.handleUserLogin}>
+                                    <FormGroup>
+                                        <Label htmlFor="user">Username</Label>
+                                        <Input type="text" id="user" name="user" innerRef={(input) => this.user = input } />
+                                    </FormGroup>
+
+                                    <FormGroup>
+                                        <Label htmlFor="pass">Password</Label>
+                                        <Input type="password" id="pass" name="pass" innerRef={(input) => this.pass = input } />
+                                    </FormGroup>
+
+
+                                    
+                                    <Button type="submit" value="submit" color="primary">Login</Button>
+                                    <FormGroup>
+                                        <Label htmlFor="newuser">New User...</Label>
+                                        <Link to="/register-user" className="btn btn-outline-warning btn-sm float-right">Sign Up</Link>
+                                    </FormGroup>
+                                </Form>
+                            </ModalBody>
+                        </Modal>
+
                         
                         
                         
