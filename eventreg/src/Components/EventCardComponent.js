@@ -4,6 +4,7 @@ import { Card , CardBody, CardTitle,CardImg, CardText, CardFooter, Button} from 
 
 const EventCard = (props) => {
     const event = props.event;
+    console.log(event.imageUrl);
     const ndate = event.lastdate;
     ndate.substring(0, 10);
     return(
@@ -19,7 +20,7 @@ const EventCard = (props) => {
                 
             </CardText>
             <CardFooter>{ndate}</CardFooter>
-            <Link to={`/user/:userId/${event._id}`}>
+            <Link to={`/:userId/${event._id}`}>
                 <Button color="primary" size="lg" block outline="none">Register</Button>
             </Link>
         </Card>
