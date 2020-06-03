@@ -17,13 +17,20 @@ class Dashboard extends Component{
         };
         
         this.toggleModal = this.toggleModal.bind(this);
-        
+        this.onChange = this.onChange.bind(this);
+        this.imageonChange = this.imageonChange.bind(this);
     
     }
 
     toggleModal(){
         this.setState({
             isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    imageonChange(event){
+        this.setState({
+            image : event.target.files[0]
         });
     }
 
@@ -36,7 +43,7 @@ class Dashboard extends Component{
         e.preventDefault();
         
         axios.defaults.withCredentials = true;
-        axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem("token")}`}
+        axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem("token")}`,'Content-Type': 'multipart/form-data'}
 
         const data = {
             image : this.state.image,
@@ -45,7 +52,13 @@ class Dashboard extends Component{
             lastdate: this.state.lastdate
         };
 
-        axios.post('http://localhost:8082/admin/dashboard/createEvent', data)
+        let form = new FormData();
+        form.set("name",this.state.name);
+        form.set("description",this.state.description);
+        form.set("lastdate",this.state.lastdate);
+        form.append("image",this.state.image);
+
+        axios.post('http://localhost:8082/admin/dashboard/createEvent', form,{headers: {"Content-type": "multipart/form-data"}})
             .then(res => {
                 this.setState({
                     image: '',
@@ -79,7 +92,7 @@ class Dashboard extends Component{
                         <Form onSubmit = {this.onSubmit}>
                         <FormGroup>
                             <Label for="image">Event Poster</Label>
-                            <Input type="file" name="image" id="image" placeholder="Enter image url" value={this.state.image} onChange={this.onChange} />
+                            <Input type="file" name="image" id="image" placeholder="Enter image url"  onChange={this.imageonChange} />
                             
                         </FormGroup>
                         <FormGroup>
