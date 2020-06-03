@@ -42,14 +42,14 @@ class UserReg extends Component{
 
     toggleModal(){
         this.setState({
-            isModalLogin: !this.state.isModalLogin
+            isModalRegister: !this.state.isModalRegister
         });
     }
 
     handleSignup(event) {
         this.toggleModal();
         event.preventDefault();
-        axios.post("http://localhost:8082/user/signup", { name: this.fullname.value, username: this.username.value, password: this.password.value, dob: this.dob.value, email: this.email.value, mobile: this.mobile.value })
+        axios.post("http://localhost:8082/user/signup", { name: this.fullname.value, username: this.user.value, password: this.pass.value, dob: this.dob.value, email: this.email.value, mobile: this.mobile.value })
             .then((res) => {
                 if(res.data.success){
                     console.log(res);
@@ -105,20 +105,16 @@ class UserReg extends Component{
             <div className="container">
                 <h1>Login</h1>
                 <AvForm onSubmit={this.handleLogin}>
-                    <AvField name="username" id="username" label="Username" type="text" innerRef={(input)=> this.username=input } validate={{
-                        required: true
-                    }} />
-                    <AvField name="password" id="password" label="Password" type="password" innerRef={(input)=> this.password=input } validate={{
-                        required: true
-                    }} />
+                    <AvField name="username" id="username" label="Username" type="text" innerRef={(input)=> this.username=input }  />
+                    <AvField name="password" id="password" label="Password" type="password" innerRef={(input)=> this.password=input }  />
 
                     <Button type="submit" value="submit" color="primary" size="btn-lg" block>Login</Button>
                     
                     <p>New User .... </p>
-                    <Button type="submit" value="signup" color="danger" outline="none">Register</Button>
+                    
 
                 </AvForm>
-
+                <Button   onClick={this.toggleModal} color="danger" outline="none">Register</Button>
 
                 
             </div>
@@ -135,14 +131,14 @@ class UserReg extends Component{
                             
                             <br/>
                             
-                            <AvField name="username" id="username" label="Username" type="text" errorMessage="Username must be greater than 3 and less than 16" innerRef={(input) => this.username = input} validate={{
+                            <AvField name="user" id="user" label="Username" type="text" errorMessage="Username must be greater than 3 and less than 16" innerRef={(input) => this.user = input} validate={{
                                 required: {value: true},
                                 pattern: {value: '^[A-Za-z0-9]+$'},
                                 minLength: {value: 4},
                                 maxLength: {value: 16}
                             }} />
 
-                            <AvField name="password" id="password" label="Password" type="password" errorMessage="Minimum 8 characters" innerRef={(input) => this.password = input} validate={{
+                            <AvField name="pass" id="pass" label="Password" type="password" errorMessage="Minimum 8 characters" innerRef={(input) => this.pass = input} validate={{
                                 required: true
                                 
                             }}/>
