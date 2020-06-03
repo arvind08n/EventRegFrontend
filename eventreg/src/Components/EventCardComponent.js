@@ -20,7 +20,7 @@ const EventCard = (props) => {
                 
             </CardText>
             <CardFooter>{ndate}</CardFooter>
-            <Link to={`/event/${event._id}`}>
+            <Link to={`/${event._id}`}>
                 <Button color="primary" size="lg" block outline="none">Register</Button>
             </Link>
         </Card>

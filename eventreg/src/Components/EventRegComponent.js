@@ -23,13 +23,14 @@ class EventReg extends Component{
     constructor(props){
         super(props);
         this.state = {
+            eventId: this.props.match.params.eventId,
             event: {}
         };
     }
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/user/' + this.state.event._id)
+            .get('http://localhost:8082/user/' + this.state.eventId + '/eventreg')
             .then(res => {
                 this.setState({
                     event: res.data
@@ -44,6 +45,7 @@ class EventReg extends Component{
 
     render(){
         const event = this.state.event;
+        console.log(event);
         let EventItem = <div >
             <h3>{event.name}</h3>
             <h4>Description</h4>
