@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Jumbotron} from 'reactstrap';
+import {Jumbotron, Table} from 'reactstrap';
+import UserCard from './UserCardComponent';
 
 const Jumbo = () => {
     return(
@@ -61,7 +62,16 @@ class UserList extends Component{
         return(
             <div>
                 <Jumbo />
-                <div>
+                <div className="container">
+                <Table striped bordered hover variant="dark" responsive>
+                <thead>
+                    <tr>
+                    <th>Registration Id</th>
+                    <th>Full Name</th>
+                    
+                    </tr>
+                </thead>
+                </Table>
                     {userList}
                 </div>
             </div>
