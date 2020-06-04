@@ -26,6 +26,7 @@ class EventReg extends Component{
     constructor(props){
         super(props);
         this.state = {
+            date: new Date(),
             eventId: this.props.match.params.eventId,
             event: {},
             fullname: '',
@@ -36,7 +37,8 @@ class EventReg extends Component{
             image: null,
             isModalOpen: false ,
             uniqueid: '',
-            success: false
+            success: false,
+            random: 0
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -52,18 +54,24 @@ class EventReg extends Component{
         
     }
 
+    getMinutes(){
+        return this.state.date.getMinutes();
+    }
+
     handleChange(event){
+        
         this.setState({
-            image: URL.createObjectURL(event.target.files[0])
+            image: URL.createObjectURL(event.target.files[0]),
+        
         })
     }
 
     onSubmit = e => {
         e.preventDefault();
-        
+       
         
         const data = {
-            uniqueid: timestamp+this.state.mobile,
+            uniqueid: timestamp,
             fullname: this.state.fullname,
             mobile: this.state.mobile,
             email: this.state.email,
@@ -78,14 +86,15 @@ class EventReg extends Component{
             .post('http://localhost:8082/user/' + this.state.eventId + '/eventreg', data)
             .then(res => {
                 this.setState({
-                    uniqueid: '',
+                    uniqueid: true,
                     fullname : '',
                     mobile: '',
                     email: '',
                     image: null,
                     type: '',
                     noofticket: '',
-                    success: true
+                    success: true,
+                    random: 0
                 })
 
             })
@@ -114,12 +123,7 @@ class EventReg extends Component{
 
     render(){
         const event = this.state.event;
-        
-        
-        var uniqueId = timestamp + this.state.mobile;
 
-        console.log(uniqueId);
-        
         console.log(event);
         let EventItem = <div >
             <h3 className="head">{event.name}</h3>
@@ -144,7 +148,7 @@ class EventReg extends Component{
                     <Jumbo />
                     <div className="container">
                         <h1>Registered Successfully....</h1>
-                        <h4>Registration ID: {uniqueId+this.state.mobile}</h4>
+                        <h4>Registration ID: {timestamp}</h4>
                         <p>Note the registration id for future references..</p>
                     </div>
                     
