@@ -4,20 +4,6 @@ import axios from 'axios';
 import EventList from './EventListComponent';
 
 
-const Jumbo = () => {
-    return(
-        <Jumbotron className="jumbotron">
-            <div className="container">
-                <div className="row row-header">
-                    <div className="col-12 col-sm-12">
-                        <h1>Welcome</h1>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-        </Jumbotron>
-    )
-}
 
 class EventReg extends Component{
     constructor(props){
@@ -45,16 +31,27 @@ class EventReg extends Component{
 
     render(){
         const event = this.state.event;
+        const jumboStyle = {
+            color: 'blue',
+            backgroundImage: 'url(' + event.imageUrl + ')' ,
+        };
         console.log(event);
         let EventItem = <div >
-            <h3>{event.name}</h3>
-            <h4>Description</h4>
-            <p>{event.description}</p>
+            <Jumbotron className="jumbotron" style={jumboStyle}>
+            <div className="container">
+                <div className="row row-header">
+                    <div className="col-12 col-sm-12">
+                        <h1>Welcome</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </Jumbotron>
             
         </div>
         return(
             <div>
-                <Jumbo />
+                
                 <div className="container">
                     {EventItem}
                 </div>
