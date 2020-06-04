@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card , CardBody, CardTitle,CardImg, CardText, CardFooter, Button} from 'reactstrap';
+import { Button} from 'reactstrap';
+import {Card, CardDeck} from 'react-bootstrap';
+
 
 const EventCard = (props) => {
     const event = props.event;
@@ -8,20 +10,23 @@ const EventCard = (props) => {
     const ndate = event.lastdate;
     ndate.substring(0, 10);
     return(
-        <Card>
-            <CardImg src={event.imageUrl}></CardImg>
-            <CardTitle className="text">
+        <CardDeck>
+        <Card className="card">
+            <Card.Img src={event.imageUrl}></Card.Img>
+            <Card.Body>
+            <Card.Title className="text">
                 
                     {event.name}
             
-            </CardTitle>
+            </Card.Title>
             
-            <CardFooter>{ndate}</CardFooter>
+            <Card.Text>{event.lastdate}</Card.Text>
             <Link to={`/${event._id}`}>
                 <Button color="primary" size="lg" block outline="none">Register</Button>
             </Link>
+            </Card.Body>
         </Card>
-    
+        </CardDeck>
     )
 }
 

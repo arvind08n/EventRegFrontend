@@ -6,6 +6,7 @@ import EventList from './EventListComponent';
 import UserReg from './RegisterComponent';
 import EventReg from './EventRegComponent';
 import Success from './SuccessComponent';
+import AdminEventList from './AdminEventListComponent'
 
 class Main extends Component{
     constructor(props){
@@ -21,7 +22,7 @@ class Main extends Component{
                     <Route exact path = "/:userId/events" component={EventList} />
                     <Route path = "/register-user" component={UserReg} />
                     <Route exact path = "/:eventId" component = {EventReg} />
-                    
+                    <Route exact path = "/dashboard/:eventId" component={AdminEventList} />
                 </Switch>
             </div>
         )

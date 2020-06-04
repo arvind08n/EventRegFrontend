@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Jumbotron, Button, Modal, ModalBody, ModalHeader, ModalFooter, Form, FormGroup, FormText, Input, Label } from 'reactstrap';
 import axios  from 'axios';
 import "../App.css"
+import AdminEventList from './AdminEventListComponent';
 
 
 class Dashboard extends Component{
@@ -96,7 +97,7 @@ class Dashboard extends Component{
     render(){
         const events = this.state.events;
         console.log("Print events:" +events);
-        let evenList;
+        let eventList;
         if(!events){
             eventList = "There is no events record!";
         }
@@ -117,7 +118,7 @@ class Dashboard extends Component{
                         </div>
                     </div>
                 </Jumbotron>
-                <div >
+                <div className="container">
                     {eventList}
                 </div>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.state.toggleModal}>
