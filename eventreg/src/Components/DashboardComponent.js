@@ -9,6 +9,7 @@ class Dashboard extends Component{
         super(props);
 
         this.state = {
+            events: [],
             isModalOpen: false,
             image: '',
             name: '',
@@ -78,7 +79,32 @@ class Dashboard extends Component{
             })
     };
 
+
+    componentDidMount(){
+        axios
+            .get('http://localhost:8082/admin/dashboard/events')
+            .then(res => {
+                this.setState({
+                    events: res.data
+                })
+            })
+            .catch(err => {
+                console.log('Error from event list');
+            })
+    };
+
     render(){
+        const events = this.state.events;
+        console.log("Print events:" +events);
+        let evenList;
+        if(!events){
+            eventList = "There is no events record!";
+        }
+        else{
+            eventList = events.map((event,k) => 
+                <AdminEventList event={event} key={k} />
+            );
+        }
         return(
             <div>
                 <Jumbotron>
@@ -91,6 +117,9 @@ class Dashboard extends Component{
                         </div>
                     </div>
                 </Jumbotron>
+                <div >
+                    {eventList}
+                </div>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.state.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Create an Event</ModalHeader>
                     <ModalBody>
