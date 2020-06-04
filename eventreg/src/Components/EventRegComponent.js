@@ -19,6 +19,8 @@ const Jumbo = () => {
     )
 }
 
+var timestamp = Date.now();
+
 class EventReg extends Component{
     constructor(props){
         super(props);
@@ -31,7 +33,8 @@ class EventReg extends Component{
             type: '',
             noofticket: '',
             image: null,
-            isModalOpen: false 
+            isModalOpen: false ,
+            uniqueid: ''
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -55,15 +58,37 @@ class EventReg extends Component{
 
     onSubmit = e => {
         e.preventDefault();
-        this.toggleModal();
+        
         
         const data = {
+            uniqueid: timestamp+this.state.mobile,
             fullname: this.state.fullname,
             mobile: this.state.mobile,
             email: this.state.email,
+            image: this.state.image,
             type: this.state.type,
             noofticket: this.state.noofticket
         };
+
+        console.log(data.uniqueid);
+
+        axios
+            .post('http://localhost:8082/user/' + this.state.eventId + '/eventreg', data)
+            .then(res => {
+                this.setState({
+                    uniqueid: '',
+                    fullname : '',
+                    mobile: '',
+                    email: '',
+                    image: null,
+                    type: '',
+                    noofticket: ''
+                })
+
+            })
+            .catch(err => {
+                console.log("Error in event reg");
+            })
 
         console.log(data);
     }
@@ -86,6 +111,10 @@ class EventReg extends Component{
     render(){
         const event = this.state.event;
         
+        
+        var uniqueId = timestamp + this.state.mobile;
+
+        console.log(uniqueId);
         
         console.log(event);
         let EventItem = <div >
