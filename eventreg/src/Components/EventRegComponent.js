@@ -3,6 +3,7 @@ import {Jumbotron, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import axios from 'axios';
 import {AvField, AvForm } from 'availity-reactstrap-validation';
 import '../App.css';
+import { Redirect } from 'react-router-dom';
 
 const Jumbo = () => {
     return(
@@ -34,7 +35,8 @@ class EventReg extends Component{
             noofticket: '',
             image: null,
             isModalOpen: false ,
-            uniqueid: ''
+            uniqueid: '',
+            success: false
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -82,7 +84,8 @@ class EventReg extends Component{
                     email: '',
                     image: null,
                     type: '',
-                    noofticket: ''
+                    noofticket: '',
+                    success: true
                 })
 
             })
@@ -91,6 +94,7 @@ class EventReg extends Component{
             })
 
         console.log(data);
+        
     }
 
     componentDidMount(){
@@ -133,6 +137,16 @@ class EventReg extends Component{
             
             
         </div>
+
+        if(this.state.success){
+            return <Redirect to={
+                {
+                    pathname: "/" + event._id + "/success",
+
+                }
+            }/>
+        }
+
         return(
             <div>
                 <Jumbo />
@@ -141,11 +155,11 @@ class EventReg extends Component{
                     <h4 className="top">Registration Form:</h4>
                     <AvForm className="top" onSubmit={this.onSubmit}>
                         <AvField name="fullname" label="Full Name:" id="fullname" type="text" innerref={(input) => this.fullname = input  } value={this.state.fullname} onChange={this.onChange} validate={{
-                            required: true
+                    
                         }}></AvField>
                         <AvField name="mobile" id="mobile" label="Mobile No" type="text" innerRef={(input) => this.mobile = input} value={this.state.mobile} onChange={this.onChange} validate={{
-                                number: true,
-                                required: true
+                                number: true
+                                
                         }} />
                         
                         
@@ -166,7 +180,7 @@ class EventReg extends Component{
                             number: true,
                             required: true
                         }}/>
-
+                        
                         <Button type="submit" color="danger" outline="none" size="btn-bg" block>Register</Button>
                         
  

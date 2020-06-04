@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Jumbotron} from 'reactstrap';
 
 const Jumbo = () => {
@@ -15,15 +15,22 @@ const Jumbo = () => {
         </Jumbotron>
     )
 }
+class Success extends Component{
+    constructor(props){
+        super(props);
 
-const Success = (props) => {
-    return(
-        <div>
-            <Jumbo />
-            
-        </div>
-    );
+    }
+
+    render(){
+        return(
+            <div>
+                <Jumbo/>
+            </div>
+        );
+    }
 }
+    
+
 
 
 export default Success;
