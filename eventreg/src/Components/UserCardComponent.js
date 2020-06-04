@@ -1,37 +1,60 @@
 import React,{Component} from 'react';
-import { Link } from 'react-router-dom';
-import {  Button, CardDeck} from 'reactstrap';
+import {  Button, CardDeck, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import { Card, Table } from 'react-bootstrap';
 import "../App.css";
 
-const UserCard = (props) => {
+class UserCard extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            isModalOpen: false
+        }
+
+        this.toggleModal =  this.toggleModal.bind(this);
+    }
+
+    toggleModal(){
+        this.setState({
+            isModalOpen : !this.state.isModalOpen
+        });
+    }
 
     
+
+    render(){
+
     const count = 0;
-    const user = props.user;
+    const user = this.props.user;
     return(
-            //         <div class="card car">
-            //             <div class="row no-gutters">
-            //                 <div class="col">
-            //                     <div class="card-block px-2">
-            //                         <h4 class="card-title">{user.uniqueid}</h4>
-            //                         <p class="card-text">{user.fullname}</p>
-                                    
-            //                     </div>
-            //                 </div>
-            //             </div>
-            //   </div>
+            <div>
             <Table striped bordered hover variant="dark" responsive>
                 <tbody>
                     <tr>
                     <td>{user.uniqueid}</td>
                     <td>{user.fullname}</td>
+                    <td><Button color="danger" outline="none" onClick={this.toggleModal} >Click to view full details ...</Button></td>
                     </tr>
                 </tbody>
-                </Table>
-    
+            </Table>
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>User Details</ModalHeader>
+                <ModalBody>
+                    
+                    <h3>Registration Id: {user.uniqueid}</h3>
+                    <h3>Full Name      : {user.fullname}</h3>
+                    <h3>Mobile         : {user.mobile}</h3>
+                    <h3>Email          : {user.email}</h3>
+                    <h3>Type           : {user.type}</h3>
+                    <h3>NoOfSeats      : {user.noofticket}</h3>
+                    
+                </ModalBody>
+
+            </Modal> 
+            </div>
     );
     }
+}
 
 
 export default UserCard;
