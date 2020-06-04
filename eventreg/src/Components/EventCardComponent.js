@@ -15,10 +15,7 @@ const EventCard = (props) => {
                     {event.name}
             
             </CardTitle>
-            <CardText className="text">
-                {event.description}
-                
-            </CardText>
+            
             <CardFooter>{ndate}</CardFooter>
             <Link to={`/${event._id}`}>
                 <Button color="primary" size="lg" block outline="none">Register</Button>

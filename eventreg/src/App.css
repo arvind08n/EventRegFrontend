@@ -75,3 +75,21 @@
 .pos{
   position: relative;
 }
+
+.unstyle{
+  max-width:320%;
+  max-height:100%;
+}
+
+.text{
+  font-size: x-large;
+  font-weight: bold;
+  text-align: left;
+
+}
+
+.head{
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+}
