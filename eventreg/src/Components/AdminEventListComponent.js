@@ -22,7 +22,11 @@ const AdminEventList = (props) => {
             </div>
             <div class="card-footer w-100 text-muted">
                 Event Entry Fee : {event.eventfee}$
-                <Button className="click" color="danger" >Click Here ..!</Button>
+
+                <Link to={`/event/dashboard/${event._id}`}>
+                    <Button className="click" color="danger" >Click Here ..!</Button>
+                </Link>
+                
         </div>
   </div>
     
