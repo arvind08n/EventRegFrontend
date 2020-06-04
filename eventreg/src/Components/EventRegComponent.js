@@ -139,12 +139,18 @@ class EventReg extends Component{
         </div>
 
         if(this.state.success){
-            return <Redirect to={
-                {
-                    pathname: "/" + event._id + "/success",
+            return(
+                <div>
+                    <Jumbo />
+                    <div className="container">
+                        <h1>Registered Successfully....</h1>
+                        <h4>Registration ID: {uniqueId+this.state.mobile}</h4>
+                        <p>Note the registration id for future references..</p>
+                    </div>
+                    
 
-                }
-            }/>
+                </div>
+            );
         }
 
         return(
