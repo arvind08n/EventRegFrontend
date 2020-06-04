@@ -95,7 +95,7 @@ class EventReg extends Component{
                     <img src={event.imageUrl}  className="unstyle" />
                     
                 </div>
-                <div className="col-12 col-sm-6" className="text">
+                <div className="col-12 col-sm-6" className="text top">
                     <p>{event.description}</p>
                     <h4>Event Fee: {event.eventfee}</h4>
                     <h6>Scroll down to register....</h6>
@@ -137,10 +137,12 @@ class EventReg extends Component{
                             number: true,
                             required: true
                         }}/>
+
+                        <Button type="submit" color="danger" outline="none" size="btn-bg" block>Register</Button>
                         
  
                     </AvForm>
-                    <Button type="submit" value="Preview" onClick={this.toggleModal} color="danger">Preview</Button>
+                    <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
 
                     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                         <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
