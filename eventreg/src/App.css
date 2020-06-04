@@ -93,3 +93,12 @@
   font-weight: bold;
   font-size: x-large;
 }
+
+.top{
+  margin-top: 50px;
+}
+
+.mini{
+  max-width: 100%;
+  max-height: 100%;
+}
