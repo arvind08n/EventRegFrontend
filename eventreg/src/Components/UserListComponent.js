@@ -47,9 +47,6 @@ class UserList extends Component{
         
         let users = event.eventreg;
 
-        function selectSelf(user){
-            return user.type === "self";
-        }
 
         let selectList;
 
