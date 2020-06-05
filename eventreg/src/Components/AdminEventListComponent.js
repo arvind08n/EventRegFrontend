@@ -2,13 +2,27 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {  Button, CardDeck} from 'reactstrap';
 import { Card } from 'react-bootstrap';
+import axios from 'axios';
 import "../App.css";
+
 
 class AdminEventList extends Component{
     
     constructor(props){
         super(props);
     }
+
+    onDeleteClick(id){
+        axios
+            .delete('http://localhost:8082/admin/dashboard/' +id)
+            .then(res => {
+                this.props.history.push("/dashboard");
+            }) 
+            .catch(err => {
+                console.log("Error from delete event");
+            })  
+    }
+
     render(){
 
     const event = this.props.event;
