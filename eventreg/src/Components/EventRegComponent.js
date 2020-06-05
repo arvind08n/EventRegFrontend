@@ -54,6 +54,18 @@ class EventReg extends Component{
         
     }
 
+    onSelect = e => {
+        if(this.state.type === "self")
+        {
+            console.log("self");
+            this.setState({ [e.target.name]: 1});
+        }
+        else{
+            console.log("group");
+            this.setState({ [e.target.name] : e.target.value});
+        }
+    }
+
     getMinutes(){
         return this.state.date.getMinutes();
     }
@@ -142,6 +154,8 @@ class EventReg extends Component{
             
         </div>
 
+        
+
         if(this.state.success){
             return(
                 <div>
@@ -179,17 +193,19 @@ class EventReg extends Component{
                         
                         <AvField name="image" id="image" label="ID CARD(png/jpeg)" type="file" innerRef={(input) => this.image = input} onChange={this.handleChange} validate={{required: true}} />
 
-                        <AvField type="select" name="type" label="Reg Type:" helpMessage="Select the reg type.If self it is prepopulate to 1" value={this.type} onChange={this.onChange} validate={{required: true}}>
+                        <AvField type="select" name="type" label="Reg Type:" helpMessage="Select the reg type.If self it is prepopulate to 1" value={this.state.type} onChange={this.onChange} validate={{required: true}}>
+                            <option>Choose</option>
                             <option>Self</option>
                             <option>Group</option>
                             <option>Corporate</option>
                             <option>Others</option>
                             
                         </AvField>
-                        <AvField name = "noofticket" type="text" label="No of Tickets" innerRef={(input) => this.noofticket = input} value={this.state.noofticket} onChange={this.onChange} validate={{
-                            number: true,
-                            required: true
-                        }}/>
+                                                                             
+                            <AvField name = "noofticket" type="text" label="No of Tickets" innerRef={(input) => this.noofticket = input} value={this.state.noofticket=1} onChange={this.onChange} validate={{
+                                number: true,
+                                required: true
+                            }}/>
                         
                         <Button type="submit" color="danger" outline="none" size="btn-bg" block>Register</Button>
                         
