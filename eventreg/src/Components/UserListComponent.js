@@ -44,7 +44,17 @@ class UserList extends Component{
 
     render(){
         const event = this.state.event;
+        
         let users = event.eventreg;
+
+        function selectSelf(user){
+            return user.type === "self";
+        }
+
+        let selectList;
+
+        
+
         console.log(users);
         let userList;
 
@@ -52,13 +62,19 @@ class UserList extends Component{
             userList = "There is no user records!";
         }
         else{
+            
+            selectList = users.filter((user,k) => {
+                
+                return user.type === "Self";
+            });
+            console.log(selectList.length);
             userList = users.map((user, k) => 
 
                 <UserCard user={user} key={k} />
 
             );
         }
-        console.log(event.eventreg);
+        
         return(
             <div>
                 <Jumbo />
