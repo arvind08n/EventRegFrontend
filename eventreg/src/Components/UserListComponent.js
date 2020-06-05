@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Jumbotron, Table} from 'reactstrap';
 import UserCard from './UserCardComponent';
+import {Bar, Line, Pie } from 'react-chartjs-2';
 
 const Jumbo = () => {
     return(
@@ -18,12 +19,15 @@ const Jumbo = () => {
     )
 }
 
+let selectList;
+
 class UserList extends Component{
     constructor(props){
         super(props);
         this.state = {
             eventId: this.props.match.params.eventId,
-            event : {}
+            event : {},
+            
         }
     }
 
@@ -41,17 +45,19 @@ class UserList extends Component{
         
     };
 
+    
 
     render(){
         const event = this.state.event;
         
         let users = event.eventreg;
 
-
-        let selectList;
-
         
 
+        
+        let groupList;
+        let corporateList;
+        let othersList;
         console.log(users);
         let userList;
 
@@ -64,7 +70,40 @@ class UserList extends Component{
                 
                 return user.type === "Self";
             });
+            groupList = users.filter((user,k) => {
+                return user.type === "Group";
+            });
+            corporateList = users.filter((user,k) => {
+                return user.type === "Corporate";
+            });
+            othersList = users.filter((user,k) => {
+                return user.type === "Others";
+            });
+            console.log(groupList.length);
             console.log(selectList.length);
+            var chartData =  {
+                labels: ['Self', 'Group', 'Corporate', 'Others'],
+                datasets: [
+                    {
+                        label: 'No Of Seats',
+                        data: [
+                            selectList.length,
+                            groupList.length,
+                            corporateList.length,
+                            othersList.length
+                        ],
+                        backgroundColor:[
+                            'rgba(255,99,132,0.6)',
+                            'rgba(54,162,235,0.6)',
+                            
+                            'rgba(255,206,86,0.6)',
+                            'rgba(75,192,192,0.6)'
+    
+                        ]
+                    }
+                ]
+            }
+            
             userList = users.map((user, k) => 
 
                 <UserCard user={user} key={k} />
@@ -76,6 +115,19 @@ class UserList extends Component{
             <div>
                 <Jumbo />
                 <div className="container">
+                    <div className="chart">
+                        <Bar   
+                            data={chartData}
+                            width={100}
+                            height={50}
+                            options={{
+                            }}
+                        />
+                    </div>
+                
+
+
+                
                 <Table striped bordered hover variant="dark" responsive>
                 <thead>
                     <tr>
