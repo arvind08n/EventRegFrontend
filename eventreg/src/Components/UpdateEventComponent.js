@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import "./App.css";
+import "../App.css";
+import {  Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
 class UpdateEvent extends Component{
     constructor(props){
         super(props);
         this.state = {
+            eventId: this.props.match.params.eventId,
             image: '',
             name: '',
             description: '',
@@ -18,7 +21,7 @@ class UpdateEvent extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/admin/dashboard/'+this.props.match.params.id+'/eventreg')
+            .get('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/eventreg')
             .then(res => {
                 this.setState({
                     name: res.data.name,
@@ -59,7 +62,7 @@ class UpdateEvent extends Component{
         
 
         axios
-            .put('http://localhost:8082/admin/dashboard/'+this.props.match.params.id+'/update',form,{headers: {"Content-type": "multipart/form-data"}})
+            .put('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/update',form,{headers: {"Content-type": "multipart/form-data"}})
             .then(res => {
                 this.setState({
                     success: true
@@ -82,6 +85,7 @@ class UpdateEvent extends Component{
             }/>   
         }
         return(
+                <div className="container">
                     <Form onSubmit = {this.onSubmit}>
                         <FormGroup>
                             <Label for="image">Event Poster</Label>
@@ -108,6 +112,7 @@ class UpdateEvent extends Component{
                         </FormGroup>
                         <Button type="submit" color="danger" value="submit">Submit</Button>
                     </Form>
+                </div>
         );
     }
 }

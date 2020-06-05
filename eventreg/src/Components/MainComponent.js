@@ -7,6 +7,7 @@ import UserReg from './RegisterComponent';
 import EventReg from './EventRegComponent';
 import Success from './SuccessComponent';
 import UserList from './UserListComponent';
+import UpdateEvent from './UpdateEventComponent';
 
 class Main extends Component{
     constructor(props){
@@ -23,7 +24,7 @@ class Main extends Component{
                     <Route path = "/register-user" component={UserReg} />
                     <Route exact path = "/:eventId" component = {EventReg} />
                     <Route exact path = "/event/dashboard/:eventId" component={UserList} />
-                    <Route exact path = "/event/dashboard/:eventId/update" component={UpdateForm} />
+                    <Route exact path = "/event/dashboard/:eventId/update" component={UpdateEvent} />
                 </Switch>
             </div>
         )

@@ -76,7 +76,9 @@ class AdminEventList extends Component{
                     <Button className="click" color="success"  >More Details...</Button>
                 </Link>
                 <Button className="click" color="danger" onClick={this.toggleModal}  >DeleteEvent</Button>
-                <Button className="click" color="warning" >UpdateEvent</Button>
+                <Link to={`/event/dashboard/${event._id}/update`}>
+                    <Button className="click" color="warning" >UpdateEvent</Button>
+                </Link>
             </div>
         </div>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
