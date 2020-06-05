@@ -23,6 +23,7 @@ class Main extends Component{
                     <Route path = "/register-user" component={UserReg} />
                     <Route exact path = "/:eventId" component = {EventReg} />
                     <Route exact path = "/event/dashboard/:eventId" component={UserList} />
+                    <Route exact path = "/event/dashboard/:eventId/update" component={UpdateForm} />
                 </Switch>
             </div>
         )

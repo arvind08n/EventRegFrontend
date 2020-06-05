@@ -12,7 +12,10 @@ class AdminEventList extends Component{
         super(props);
         this.state = {
             isModalOpen: false,
-            success: false
+            success: false,
+            
+            
+            
         };
         this.toggleModal = this.toggleModal.bind(this);
         
@@ -68,11 +71,12 @@ class AdminEventList extends Component{
             <div class="card-footer w-100 text-muted">
                 Event Entry Fee : {event.eventfee}$
 
-                <Button className="click" color="danger" onClick={this.toggleModal}  >DeleteEvent</Button>
+                
                 <Link to={`/event/dashboard/${event._id}`}>
                     <Button className="click" color="success"  >More Details...</Button>
                 </Link>
-                
+                <Button className="click" color="danger" onClick={this.toggleModal}  >DeleteEvent</Button>
+                <Button className="click" color="warning" >UpdateEvent</Button>
             </div>
         </div>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
