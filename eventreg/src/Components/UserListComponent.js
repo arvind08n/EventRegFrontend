@@ -142,11 +142,14 @@ class UserList extends Component{
                         <div className="col-md-2">
                             <h5>Links</h5>
                             
-                            <button type="button" class="btn btn-primary btn-circle btn-xl">Blue</button> 
+                            <button type="button" class="btn btn-warning btn-circle btn-xl">Self</button> 
                             
-                            <button type="button" class="btn btn-secondary btn-circle btn-xl">Gray</button>
+                            <button type="button" class="btn btn-secondary btn-circle btn-xl">Group</button>
                             
-                            <button type="button" class="btn btn-success btn-circle btn-xl">Green</button>
+                            <button type="button" class="btn btn-success btn-circle btn-xl">Corp</button>
+
+                            
+                            <button type="button" class="btn btn-success btn-circle btn-xl">Others</button>
                         </div>
                     </div>
                 </div>
