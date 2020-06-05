@@ -113,33 +113,45 @@ class UserList extends Component{
         
         return(
             <div>
+                
                 <Jumbo />
-                <div className="container">
-                    <div className="chart">
-                        <Bar   
-                            data={chartData}
-                            width={100}
-                            height={50}
-                            options={{
-                            }}
-                        />
+                <div className="container-fluid">
+                    <div className='row'>
+                        <div className="col-md-2"></div>
+                        <div className="col-md-8">
+                            <div className="chart">
+                                <Bar   
+                                    data={chartData}
+                                    width={100}
+                                    height={50}
+                                    options={{
+                                    }}
+                                />
+                            </div>    
+                            <Table striped bordered hover variant="dark" responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Registration Id</th>
+                                        <th>Full Name</th>
+                                
+                                    </tr>
+                                </thead>
+                            </Table>
+                                {userList}
+                        </div>
+                        <div className="col-md-2">
+                            <h5>Links</h5>
+                            
+                            <button type="button" class="btn btn-primary btn-circle btn-xl">Blue</button> 
+                            
+                            <button type="button" class="btn btn-secondary btn-circle btn-xl">Gray</button>
+                            
+                            <button type="button" class="btn btn-success btn-circle btn-xl">Green</button>
+                        </div>
                     </div>
-                
-
-
-                
-                <Table striped bordered hover variant="dark" responsive>
-                <thead>
-                    <tr>
-                    <th>Registration Id</th>
-                    <th>Full Name</th>
-                    
-                    </tr>
-                </thead>
-                </Table>
-                    {userList}
                 </div>
             </div>
+            
         );
     }
 
