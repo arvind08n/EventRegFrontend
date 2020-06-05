@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {  Button, CardDeck} from 'reactstrap';
 import { Card } from 'react-bootstrap';
 import "../App.css";
 
-const AdminEventList = (props) => {
-    const event = props.event;
+class AdminEventList extends Component{
+    
+    constructor(props){
+        super(props);
+    }
+    render(){
+
+    const event = this.props.event;
     return(
         <div class="card car">
             <div class="row no-gutters">
@@ -30,7 +36,8 @@ const AdminEventList = (props) => {
         </div>
   </div>
     
-    )
+    );
+    }
 }
 
 export default AdminEventList;
