@@ -54,13 +54,13 @@ class AdminEventList extends Component{
             <div class="card-footer w-100 text-muted">
                 Event Entry Fee : {event.eventfee}$
 
-                <Button className="click" color="danger"  >DeleteEvent</Button>
+                <Button className="click" color="danger" onClick={this.toggleModal}  >DeleteEvent</Button>
                 <Link to={`/event/dashboard/${event._id}`}>
-                    <Button className="click" color="success" onClick={this.toggleModal} >Click Here ..!</Button>
+                    <Button className="click" color="success"  >Click Here ..!</Button>
                 </Link>
                 
+            </div>
         </div>
-  </div>
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>
                 Alert
@@ -72,7 +72,7 @@ class AdminEventList extends Component{
                 </Button>
             </ModalBody>
         </Modal>
-  </div>
+    </div>
     
     );
     }
