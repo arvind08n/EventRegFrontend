@@ -135,8 +135,11 @@ class EventReg extends Component{
 
     render(){
         const event = this.state.event;
-
-        console.log(event);
+        const last = new Date(event.lastdate).getTime();
+        const currentDate = Date.now();
+        console.log(Date.now());
+        console.log(event.lastdate);
+        console.log(last);
         let EventItem = <div >
             <h3 className="head">{event.name}</h3>
             <div className="row">
@@ -170,67 +173,73 @@ class EventReg extends Component{
                 </div>
             );
         }
-
-        return(
-            <div>
-                <Jumbo />
-                <div className="container">
-                    {EventItem}
-                    <h4 className="top">Registration Form:</h4>
-                    <AvForm className="top" onSubmit={this.onSubmit}>
-                        <AvField name="fullname" label="Full Name:" id="fullname" type="text" innerref={(input) => this.fullname = input  } value={this.state.fullname} onChange={this.onChange} validate={{
-                    
-                        }}></AvField>
-                        <AvField name="mobile" id="mobile" label="Mobile No" type="text" innerRef={(input) => this.mobile = input} value={this.state.mobile} onChange={this.onChange} validate={{
-                                number: true
-                                
-                        }} />
+        if(currentDate > last){
+            return(
+            <div></div>);
+        }
+        else{
+            return(
+            
+                <div>
+                    <Jumbo />
+                    <div className="container">
+                        {EventItem}
+                        <h4 className="top">Registration Form:</h4>
+                        <AvForm className="top" onSubmit={this.onSubmit}>
+                            <AvField name="fullname" label="Full Name:" id="fullname" type="text" innerref={(input) => this.fullname = input  } value={this.state.fullname} onChange={this.onChange} validate={{
                         
-                        
-                        <AvField name="email" id="email" label="Email" type="email" errorMessage="required" innerRef={(input) => this.email = input} value={this.state.email} onChange={this.onChange} validate={{
-                                required: true 
+                            }}></AvField>
+                            <AvField name="mobile" id="mobile" label="Mobile No" type="text" innerRef={(input) => this.mobile = input} value={this.state.mobile} onChange={this.onChange} validate={{
+                                    number: true
+                                    
                             }} />
-                        
-                        <AvField name="image" id="image" label="ID CARD(png/jpeg)" type="file" innerRef={(input) => this.image = input} onChange={this.handleChange} validate={{required: true}} />
-
-                        <AvField type="select" name="type" label="Reg Type:" helpMessage="Select the reg type.If self it is prepopulate to 1" value={this.state.type} onChange={this.onChange} validate={{required: true}}>
-                            <option>Choose</option>
-                            <option>Self</option>
-                            <option>Group</option>
-                            <option>Corporate</option>
-                            <option>Others</option>
                             
-                        </AvField>
-                                                                             
-                            <AvField name = "noofticket" type="text" label="No of Tickets" innerRef={(input) => this.noofticket = input} value={this.state.noofticket=1} onChange={this.onChange} validate={{
-                                number: true,
-                                required: true
-                            }}/>
+                            
+                            <AvField name="email" id="email" label="Email" type="email" errorMessage="required" innerRef={(input) => this.email = input} value={this.state.email} onChange={this.onChange} validate={{
+                                    required: true 
+                                }} />
+                            
+                            <AvField name="image" id="image" label="ID CARD(png/jpeg)" type="file" innerRef={(input) => this.image = input} onChange={this.handleChange} validate={{required: true}} />
+
+                            <AvField type="select" name="type" label="Reg Type:" helpMessage="Select the reg type.If self it is prepopulate to 1" value={this.state.type} onChange={this.onChange} validate={{required: true}}>
+                                <option>Choose</option>
+                                <option>Self</option>
+                                <option>Group</option>
+                                <option>Corporate</option>
+                                <option>Others</option>
+                                
+                            </AvField>
+                                                                                
+                                <AvField name = "noofticket" type="text" label="No of Tickets" innerRef={(input) => this.noofticket = input} value={this.state.noofticket=1} onChange={this.onChange} validate={{
+                                    number: true,
+                                    required: true
+                                }}/>
+                            
+                            <Button type="submit" color="danger" outline="none" size="btn-bg" block>Register</Button>
+                            
+    
+                        </AvForm>
+                        <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
+
+                        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                            <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
+                            <ModalBody className="container">
+                                <img src={this.state.image} className= "mini" />
+                                <h4>Full Name:    {this.state.fullname}</h4>
+                                <h6>Mobile No: {this.state.mobile}</h6>
+                                <h6>Email: {this.state.email}</h6>
+                                <h6>Reg Type: {this.state.type}</h6>
+                                <h6>No of Tickets: {this.state.noofticket}</h6>
+
+                            </ModalBody>
+                        </Modal>
+
                         
-                        <Button type="submit" color="danger" outline="none" size="btn-bg" block>Register</Button>
-                        
- 
-                    </AvForm>
-                    <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
 
-                    <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                        <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
-                        <ModalBody className="container">
-                            <img src={this.state.image} className= "mini" />
-                            <h4>Full Name:    {this.state.fullname}</h4>
-                            <h6>Mobile No: {this.state.mobile}</h6>
-                            <h6>Email: {this.state.email}</h6>
-                            <h6>Reg Type: {this.state.type}</h6>
-                            <h6>No of Tickets: {this.state.noofticket}</h6>
-
-                        </ModalBody>
-                    </Modal>
-
-                    
-
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

@@ -8,6 +8,7 @@ const EventCard = (props) => {
     const event = props.event;
     console.log(event.imageUrl);
     const ndate = event.lastdate;
+    
     ndate.substring(0, 10);
     return(
         <CardDeck>
