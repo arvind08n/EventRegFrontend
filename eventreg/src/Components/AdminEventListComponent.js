@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {  Button, CardDeck, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import { Card } from 'react-bootstrap';
 import axios from 'axios';
@@ -11,9 +11,11 @@ class AdminEventList extends Component{
     constructor(props){
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            success: false
         };
         this.toggleModal = this.toggleModal.bind(this);
+        
     }
 
     toggleModal(){
@@ -21,12 +23,16 @@ class AdminEventList extends Component{
     }
 
 
-    onDeleteClick(id){
-        this.toggleModal();
+    onDeleteClick(eventid){
+        
+        
         axios
-            .delete('http://localhost:8082/admin/dashboard/' +id)
+            .delete("http://localhost:8082/admin/dashboard/"+eventid)
             .then(res => {
-                this.props.history.push("/dashboard");
+                console.log("successful");
+                this.setState({
+                    success: true
+                })
             }) 
             .catch(err => {
                 console.log("Error from delete event");
@@ -34,8 +40,16 @@ class AdminEventList extends Component{
     }
 
     render(){
+    if(this.state.success){
+        return <Redirect to={
+            {
+                pathname: "/dashboard"
 
+            }
+        }/>
+    }
     const event = this.props.event;
+    console.log(event._id);
     return(
         <div>
         <div class="card car">
@@ -56,7 +70,7 @@ class AdminEventList extends Component{
 
                 <Button className="click" color="danger" onClick={this.toggleModal}  >DeleteEvent</Button>
                 <Link to={`/event/dashboard/${event._id}`}>
-                    <Button className="click" color="success"  >Click Here ..!</Button>
+                    <Button className="click" color="success"  >More Details...</Button>
                 </Link>
                 
             </div>
@@ -67,9 +81,11 @@ class AdminEventList extends Component{
             </ModalHeader>
             <ModalBody>
                 <p>Are you sure you want to delete.. ?</p>
-                <Button className="click" color="danger" onClick={this.onDeleteClick.bind(this, event._id)}>
+                
+                <Button className="click" color="danger" onClick={this.onDeleteClick.bind(this,event._id)}>
                     Delete
                 </Button>
+                
             </ModalBody>
         </Modal>
     </div>
