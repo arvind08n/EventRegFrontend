@@ -73,11 +73,11 @@ class AdminEventList extends Component{
 
                 
                 <Link to={`/event/dashboard/${event._id}`}>
-                    <Button className="click" color="success"  ><i class="fa fa-info" aria-hidden="true" style={{marginRight: '7px'}} ></i>More Details...</Button>
+                    <Button className="click" color="success" outline="none"  ><i class="fa fa-info" aria-hidden="true" style={{marginRight: '7px'}} ></i>More Details...</Button>
                 </Link>
-                <Button className="click" color="danger" onClick={this.toggleModal}  ><i class="fa fa-trash" aria-hidden="true" style={{marginRight: '7px'}} ></i>DeleteEvent</Button>
+                <Button className="click" color="danger" outline="none" onClick={this.toggleModal}  ><i class="fa fa-trash" aria-hidden="true" style={{marginRight: '7px'}} ></i>DeleteEvent</Button>
                 <Link to={`/event/dashboard/${event._id}/update`}>
-                    <Button className="click" color="warning" ><i class="fa fa-edit" aria-hidden="true" style={{marginRight: '7px'}} ></i>UpdateEvent</Button>
+                    <Button className="click" color="warning" outline="none" ><i class="fa fa-edit" aria-hidden="true" style={{marginRight: '7px'}} ></i>UpdateEvent</Button>
                 </Link>
             </div>
         </div>
