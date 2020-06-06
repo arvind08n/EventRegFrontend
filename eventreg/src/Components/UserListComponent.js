@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Jumbotron, Table} from 'reactstrap';
 import UserCard from './UserCardComponent';
 import {Bar, Line, Pie } from 'react-chartjs-2';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 
 const Jumbo = () => {
     return(
@@ -113,7 +115,7 @@ class UserList extends Component{
         
         return(
             <div>
-                
+                <Header />
                 <Jumbo />
                 <div className="container-fluid">
                     <div className='row'>
@@ -153,6 +155,7 @@ class UserList extends Component{
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
             
         );
