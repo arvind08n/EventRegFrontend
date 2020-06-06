@@ -37,7 +37,7 @@ export default class Header extends Component {
                                 <NavItem>
                                     <Button outline className="bg">
                                         <Link to={`/`}>
-                                        <span ><i className="fa fa-sign-out"></i>Logout</span>
+                                        <i className="fa fa-sign-out"></i>Logout
                                         </Link>
                                     </Button>
                                 </NavItem>

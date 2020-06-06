@@ -56,13 +56,12 @@ class UserList extends Component{
 
         
 
-        
-        let groupList;
+        var selectList;        
+        var groupList;
         let corporateList;
         let othersList;
-        console.log(users);
         let userList;
-
+        
         if(!users){
             userList = "There is no user records!";
         }
@@ -105,13 +104,15 @@ class UserList extends Component{
                     }
                 ]
             }
-            
+            console.log(selectList);
             userList = users.map((user, k) => 
 
                 <UserCard user={user} key={k} />
 
             );
+            
         }
+        console.log(userList.length);
         
         return(
             <div>
@@ -125,6 +126,7 @@ class UserList extends Component{
                                 <Bar   
                                     data={chartData}
                                     width={100}
+                                    
                                     height={50}
                                     options={{
                                     }}
@@ -141,17 +143,20 @@ class UserList extends Component{
                             </Table>
                                 {userList}
                         </div>
-                        <div className="col-md-2">
-                            <h5>Links</h5>
+                        <div className="col-md-2 tex">
+                                <h5>Links</h5>
+                                <p className="tex">Total</p>
+                                <button  type="button" class="btn btn-success btn-circle btn-xl"> 
+                                {userList.length}</button>
+                                <p className="tex">Self</p>
+                                <button type="button" class="btn btn-warning btn-circle btn-xl"></button> 
+                                <p className="tex">Group</p>
+                                <button type="button" class="btn btn-secondary btn-circle btn-xl"></button>
+                                <p className="tex">Corporate</p>                                        
+                                <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+                                <p className="tex">Others</p>
                             
-                            <button type="button" class="btn btn-warning btn-circle btn-xl">Self</button> 
-                            
-                            <button type="button" class="btn btn-secondary btn-circle btn-xl">Group</button>
-                            
-                            <button type="button" class="btn btn-success btn-circle btn-xl">Corp</button>
-
-                            
-                            <button type="button" class="btn btn-success btn-circle btn-xl">Others</button>
+                            <button type="button" class="btn btn-success btn-circle btn-xl"></button>
                         </div>
                     </div>
                 </div>

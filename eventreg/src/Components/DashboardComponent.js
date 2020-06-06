@@ -4,6 +4,7 @@ import axios  from 'axios';
 import "../App.css"
 import AdminEventList from './AdminEventListComponent';
 import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 
 
 class Dashboard extends Component{
@@ -155,6 +156,7 @@ class Dashboard extends Component{
                     </ModalBody>
 
                 </Modal>
+                <Footer />
             </div>
         );
     }
