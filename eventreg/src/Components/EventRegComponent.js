@@ -3,6 +3,7 @@ import {Jumbotron, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import axios from 'axios';
 import {AvField, AvForm } from 'availity-reactstrap-validation';
 import '../App.css';
+import tick from '../assets/tick.png';
 import { Redirect } from 'react-router-dom';
 
 const Jumbo = () => {
@@ -181,9 +182,12 @@ class EventReg extends Component{
                 <div>
                     <Jumbo />
                     <div className="container">
-                        <h1>Registered Successfully....</h1>
-                        <h4>Registration ID: {timestamp}</h4>
-                        <p>Note the registration id for future references..</p>
+                        <div className="tick">    
+                            <h1>Registered Successfully !</h1>
+                            <img width="100px" height="100px" src={tick}></img>
+                            <h4>Registration ID: {timestamp}</h4>
+                            <p>Note the registration id for future references..</p>
+                        </div>    
                     </div>
                     
 

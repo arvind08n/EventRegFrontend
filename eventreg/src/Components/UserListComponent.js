@@ -164,8 +164,8 @@ class UserList extends Component{
                             <Table striped bordered hover variant="dark" responsive>
                                 <thead>
                                     <tr>
-                                        <th>Registration Id</th>
-                                        <th>Full Name</th>
+                                        <th>Id</th>
+                                        <th> Name </th>
                                 
                                     </tr>
                                 </thead>
