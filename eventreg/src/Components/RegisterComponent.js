@@ -5,6 +5,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 import Footer from './FooterComponent';
+import { Alert } from 'react-alert';
 
 
 
@@ -98,6 +99,7 @@ class UserReg extends Component{
                 }
             }/>
         }
+        
         return(
             
             <div className="bg">

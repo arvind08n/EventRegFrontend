@@ -27,7 +27,7 @@ class EventReg extends Component{
         super(props);
         this.state = {
             date: new Date(),
-            eventId: this.props.match.params.eventId,
+            eventid: this.props.match.params.eventId,
             event: {},
             fullname: '',
             mobile: '',
@@ -101,7 +101,7 @@ class EventReg extends Component{
         console.log(data.uniqueid);
 
         axios
-            .post('http://localhost:8082/user/' + this.state.eventId + '/eventreg', data)
+            .post('http://localhost:8082/user/' + this.state.eventid + '/eventreg', data)
             .then(res => {
                 this.setState({
                     uniqueid: true,
@@ -129,7 +129,7 @@ class EventReg extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/user/' + this.state.eventId + '/eventreg')
+            .get('http://localhost:8082/user/' + this.state.eventid + '/eventreg')
             .then(res => {
                 this.setState({
                     event: res.data
@@ -138,11 +138,16 @@ class EventReg extends Component{
             .catch(err => {
                 console.log("Error from eventreg");
             })
+        console.log(this.state.eventid);
+        console.log(this.state.event);
+   
     };
 
+    
 
 
     render(){
+        console.log(this.state.eventid);
         const event = this.state.event;
         const last = new Date(event.lastdate).getTime();
         const currentDate = Date.now();
@@ -156,7 +161,10 @@ class EventReg extends Component{
                     <img src={event.imageUrl}  className="unstyle" />
                     
                 </div>
+            </div>
+            <div className="row">
                 <div className="col-12 col-sm-6" className="text top">
+                    <h4>Description</h4>
                     <p>{event.description}</p>
                     <h4>Event Fee: {event.eventfee}</h4>
                     <h6>Scroll down to register....</h6>
