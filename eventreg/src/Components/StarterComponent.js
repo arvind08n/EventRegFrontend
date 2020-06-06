@@ -94,7 +94,7 @@ class  StarterComponent  extends Component {
                                         <CardSubtitle>Welcome User !!</CardSubtitle>
                                         <CardText>Click on the below button to enter..</CardText>
                                         <Link to={`/register-user`}>
-                                            <Button color="danger">Click me</Button>
+                                            <Button color="danger"><i className="fa fa-paper-plane" aria-hidden="true" style={{marginRight: '7px'}}></i>Click me</Button>
                                         </Link>
                                     </CardBody>
                                 </Card>
@@ -106,7 +106,7 @@ class  StarterComponent  extends Component {
                                         <CardTitle>Admin</CardTitle>
                                         <CardSubtitle>Welcome back Admin !!!</CardSubtitle>
                                         <CardText>Click on the below button to login..</CardText>
-                                        <Button color="danger" onClick={this.toggleModal}>Login</Button>
+                                        <Button color="danger"  onClick={this.toggleModal}><i class="fa fa-sign-in" aria-hidden="true" style={{marginRight: '7px'}} ></i>Login</Button>
                                     </CardBody>
                                 </Card>
                             </div>
