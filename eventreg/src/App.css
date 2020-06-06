@@ -137,3 +137,9 @@
   margin: 20px;
   align-self: center;
 } 
+
+.footer{
+  background-color: rgb(20, 2, 53);
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+}

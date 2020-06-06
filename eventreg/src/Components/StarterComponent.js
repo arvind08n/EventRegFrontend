@@ -4,6 +4,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle,Jumbotron, CardSubtitle, B
 import '../App.css';
 import axios from "axios";
 import img from '../assets/admin.png';
+import footer from './FooterComponent';
+import Footer from './FooterComponent';
 
 const Jumbo = () => {
     return(
@@ -141,8 +143,9 @@ class  StarterComponent  extends Component {
                         
                         
                         
-                        
+                        <Footer />        
                 </div>
+                
 
                 
             );
