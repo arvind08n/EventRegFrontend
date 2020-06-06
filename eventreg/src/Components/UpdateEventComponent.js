@@ -9,14 +9,14 @@ class UpdateEvent extends Component{
         super(props);
         this.state = {
             eventId: this.props.match.params.eventId,
-            image: '',
             name: '',
             description: '',
             lastdate: '',
             eventfee: '',
             success: false
         };
-        this.imageonChange = this.imageonChange.bind(this);
+        
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount(){
@@ -24,6 +24,7 @@ class UpdateEvent extends Component{
             .get('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/eventreg')
             .then(res => {
                 this.setState({
+
                     name: res.data.name,
                     description: res.data.description,
                     lastdate: res.data.lastdate,
@@ -31,15 +32,11 @@ class UpdateEvent extends Component{
                 })
             })
             .catch(err => {
+                console.log(this.state.eventId);
                 console.log('Error from update');
             })
     };
 
-    imageonChange(event){
-        this.setState({
-            image : event.target.files[0]
-        });
-    }
 
 
     onChange = e => {
@@ -49,20 +46,18 @@ class UpdateEvent extends Component{
     onSubmit = e => {
         e.preventDefault();
 
-        axios.defaults.withCredentials = true;
-        axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem("token")}`,'Content-Type': 'multipart/form-data'}
 
 
-        let form = new FormData();
-        form.set("name",this.state.name);
-        form.set("description",this.state.description);
-        form.set("lastdate",this.state.lastdate);
-        form.set("eventfee",this.state.eventfee)
-        form.append("image",this.state.image);
+        const data = {
+            name: this.state.name,
+            description: this.state.description,
+            lastdate: this.state.lastdate,
+            eventfee: this.state.eventfee
+        }
         
 
         axios
-            .put('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/update',form,{headers: {"Content-type": "multipart/form-data"}})
+            .put('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/update',data)
             .then(res => {
                 this.setState({
                     success: true
@@ -87,11 +82,7 @@ class UpdateEvent extends Component{
         return(
                 <div className="container">
                     <Form onSubmit = {this.onSubmit}>
-                        <FormGroup>
-                            <Label for="image">Event Poster</Label>
-                            <Input type="file" name="image" id="image" placeholder="Enter image url"  onChange={this.imageonChange} />
-                            
-                        </FormGroup>
+                        
                         <FormGroup>
                             <Label htmlFor="name">
                                 Event Name:
