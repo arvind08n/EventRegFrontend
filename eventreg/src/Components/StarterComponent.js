@@ -4,15 +4,18 @@ import { Card, CardImg, CardText, CardBody, CardTitle,Jumbotron, CardSubtitle, B
 import '../App.css';
 import axios from "axios";
 import img from '../assets/admin.png';
-import footer from './FooterComponent';
 import Footer from './FooterComponent';
+
 
 const Jumbo = () => {
     return(
         <Jumbotron className="jumbotron">
             <div className="container">
                 <div className="row row-header">
-                    <div className="col-12 col-sm-12">
+                    <div className="col-12 col-sm-1">
+                        <img src="https://pbs.twimg.com/profile_images/1227930874114494465/ZikbSjNk_400x400.jpg" width="50px" height="50px" alt="upskill"></img>
+                    </div>
+                    <div className="col-12 col-sm-10">    
                         <h1>Welcome</h1>
                         <p></p>
                     </div>
@@ -116,7 +119,7 @@ class  StarterComponent  extends Component {
                             
                         </div>
                     </div>
-                    <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <Modal className="bg" isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                             <ModalHeader toggle={this.toggleModal}> Login</ModalHeader>
                             <ModalBody>
                                 <Form onSubmit={this.handleLogin}>
@@ -130,13 +133,8 @@ class  StarterComponent  extends Component {
                                         <Input type="password" id="password" name="password" innerRef={(input) => this.password = input } />
                                     </FormGroup>
 
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="checkbox" name="remember" innerRef={(input) => this.remember = input } />
-                                            Remember me
-                                        </Label>
-                                    </FormGroup>
-                                    <Button type="submit" value="submit" color="primary">Login</Button>
+                                    
+                                    <Button type="submit" value="submit" color="primary"><i class="fa fa-sign-in" aria-hidden="true" style={{marginRight: '7px'}} ></i>Login</Button>
                                 </Form>
                             </ModalBody>
                         </Modal>

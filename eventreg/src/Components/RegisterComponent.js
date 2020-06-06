@@ -4,7 +4,7 @@ import '../App.css';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-
+import Footer from './FooterComponent';
 
 
 
@@ -100,7 +100,7 @@ class UserReg extends Component{
         }
         return(
             
-            <div>
+            <div className="bg">
                 <Jumbo />
             <div className="container">
                 <h1>Login</h1>
@@ -108,18 +108,18 @@ class UserReg extends Component{
                     <AvField name="username" id="username" label="Username" type="text" innerRef={(input)=> this.username=input }  />
                     <AvField name="password" id="password" label="Password" type="password" innerRef={(input)=> this.password=input }  />
 
-                    <Button type="submit" value="submit" color="primary" size="btn-lg" block>Login</Button>
+                    <Button type="submit" value="submit" color="primary" size="btn-lg" block><i className="fa fa-sign-in " aria-hidden="true" style={{marginRight: '7px'}}></i>Login</Button>
                     
                     <p>New User .... </p>
                     
 
                 </AvForm>
-                <Button   onClick={this.toggleModal} color="danger" outline="none">Register</Button>
+                <Button   onClick={this.toggleModal} color="danger" outline="none"><i className="fa fa-user-plus " aria-hidden="true" style={{marginRight: '7px'}}></i>Register</Button>
 
                 
             </div>
-            <Modal isOpen={this.state.isModalRegister} toggle={this.toggleModal}>
-                <ModalHeader toggle={this.toggleModal}>Register</ModalHeader>
+            <Modal className="bg" isOpen={this.state.isModalRegister} toggle={this.toggleModal}>
+                <ModalHeader className="head" toggle={this.toggleModal}>Register</ModalHeader>
                     <ModalBody>
                         <AvForm onSubmit={this.handleSignup}>
                             
@@ -160,10 +160,11 @@ class UserReg extends Component{
 
                             
                             
-                            <Button type="submit" value="submit" color="danger" size="btn-lg" block>Register</Button>
+                            <Button type="submit" value="submit" color="danger" size="btn-lg" block><i className="fa fa-user-plus " aria-hidden="true" style={{marginRight: '7px'}}></i>Register</Button>
                         </AvForm>
                     </ModalBody>
             </Modal>
+            <Footer />
             </div>
 
         

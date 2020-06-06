@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import EventCard from './EventCardComponent';
+import Header from './HeaderComponent';
 
 
 class EventList extends Component{
@@ -41,7 +42,12 @@ class EventList extends Component{
         }
 
         return(
+            <div>
+            <div>
+                <Header />
+            </div>
             <div className="EventList">
+                
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
@@ -51,8 +57,10 @@ class EventList extends Component{
                     </div>
                 </div>
                 <div className="list">
+                    
                     {eventList}
                 </div>
+            </div>
             </div>
             </div>
         );
