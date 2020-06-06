@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Jumbotron, Table} from 'reactstrap';
+import {Jumbotron, Table, Modal} from 'reactstrap';
 import UserCard from './UserCardComponent';
 import {Bar, Line, Pie } from 'react-chartjs-2';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+
+var selfno, groupno, corpno, otherno;
 
 const Jumbo = () => {
     return(
@@ -29,8 +31,10 @@ class UserList extends Component{
         this.state = {
             eventId: this.props.match.params.eventId,
             event : {},
+            select: null
             
         }
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount(){
@@ -47,7 +51,9 @@ class UserList extends Component{
         
     };
 
-    
+    onChange = e => {
+        this.setState({ select: e.target.value });
+    }
 
     render(){
         const event = this.state.event;
@@ -80,8 +86,12 @@ class UserList extends Component{
             othersList = users.filter((user,k) => {
                 return user.type === "Others";
             });
-            console.log(groupList.length);
-            console.log(selectList.length);
+            
+            selfno = selectList.length;
+            groupno = groupList.length;
+            corpno = corporateList.length;
+            otherno = othersList.length;
+
             var chartData =  {
                 labels: ['Self', 'Group', 'Corporate', 'Others'],
                 datasets: [
@@ -105,14 +115,26 @@ class UserList extends Component{
                 ]
             }
             console.log(selectList);
+
+            if(this.state.select === "self"){
+                return(
+                    <div>
+                        
+                    </div>
+                );
+            }
+            
             userList = users.map((user, k) => 
 
                 <UserCard user={user} key={k} />
 
             );
             
+
+            console.log(this.state.select);
+            
         }
-        console.log(userList.length);
+        console.log(selfno);
         
         return(
             <div>
@@ -120,9 +142,16 @@ class UserList extends Component{
                 <Jumbo />
                 <div className="container-fluid">
                     <div className='row'>
-                        <div className="col-md-2"></div>
-                        <div className="col-md-8">
+                        <div className="col-sm-2 tex">
+                                <p className="tex">Self</p>
+                                <button type="button" class="btn btn-warning btn-circle btn-xl" value="self" onClick={this.onChange}>{selfno}</button> 
+                                <p className="tex">Group</p>
+                                <button type="button" class="btn btn-secondary btn-circle btn-xl" value="group" onClick={this.onChange} >{groupno}</button>
+                        </div>
+                        <div className="col-sm-8">
                             <div className="chart">
+                            {/* <p className="tex">Total</p>
+                                <button  type="button" class="btn btn-success btn-circle btn-xl">{userList.length}</button> */}
                                 <Bar   
                                     data={chartData}
                                     width={100}
@@ -143,20 +172,14 @@ class UserList extends Component{
                             </Table>
                                 {userList}
                         </div>
-                        <div className="col-md-2 tex">
-                                <h5>Links</h5>
-                                <p className="tex">Total</p>
-                                <button  type="button" class="btn btn-success btn-circle btn-xl"> 
-                                {userList.length}</button>
-                                <p className="tex">Self</p>
-                                <button type="button" class="btn btn-warning btn-circle btn-xl"></button> 
-                                <p className="tex">Group</p>
-                                <button type="button" class="btn btn-secondary btn-circle btn-xl"></button>
+                        <div className="col-sm-2 tex">
+                                
+                                
                                 <p className="tex">Corporate</p>                                        
-                                <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+                                <button type="button" class="btn btn-danger btn-circle btn-xl">{corpno}</button>
                                 <p className="tex">Others</p>
                             
-                            <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+                            <button type="button" class="btn btn-success btn-circle btn-xl">{otherno}</button>
                         </div>
                     </div>
                 </div>
