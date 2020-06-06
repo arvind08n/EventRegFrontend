@@ -133,6 +133,7 @@
   margin: 50px;
   max-width: 100%;
   max-height: 100%;
+  border: 2px solid black;
 }
 
 .click{
@@ -159,4 +160,7 @@
 
 .card-footer{
   background-color: #000000;
+}
+.tex{
+  text-align: center;
 }

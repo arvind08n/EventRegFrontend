@@ -150,7 +150,7 @@ class Dashboard extends Component{
                             <Label htmlFor="eventfee">Event Fee</Label>
                             <Input type="eventfee" name="eventfee" value={this.state.eventfee} onChange={this.onChange} />
                         </FormGroup>
-                        <Button type="submit" color="danger" value="submit">Submit</Button>
+                        <Button type="submit" color="danger" outline="none" size="btn-lg" block value="submit"><i class="fa fa-plus" aria-hidden="true" style={{marginRight: '7px'}} ></i>Submit</Button>
                         </Form>
                     </ModalBody>
 

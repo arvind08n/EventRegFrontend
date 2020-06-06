@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, NavItem, Collapse, Jumbotron, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import "../App.css";
 
 export default class Header extends Component {
 
@@ -23,7 +24,7 @@ export default class Header extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <React.Fragment >
                 <Navbar fixed="top" dark pos expand="md">
                     
                         <NavbarToggler onClick={this.toggleNav} />
@@ -34,9 +35,9 @@ export default class Header extends Component {
 
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <Button outline >
+                                    <Button outline className="bg">
                                         <Link to={`/`}>
-                                        <span className="fa fa-sign-in fa-lg">Logout</span>
+                                        <span ><i className="fa fa-sign-out"></i>Logout</span>
                                         </Link>
                                     </Button>
                                 </NavItem>

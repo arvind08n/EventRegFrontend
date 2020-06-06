@@ -81,7 +81,7 @@ class AdminEventList extends Component{
                 </Link>
             </div>
         </div>
-        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+        <Modal className="bg" isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>
                 Alert
             </ModalHeader>
@@ -89,6 +89,7 @@ class AdminEventList extends Component{
                 <p>Are you sure you want to delete.. ?</p>
                 
                 <Button className="click" color="danger" onClick={this.onDeleteClick.bind(this,event._id)}>
+                <i class="fa fa-trash" aria-hidden="true" style={{marginRight: '7px'}} ></i>
                     Delete
                 </Button>
                 
