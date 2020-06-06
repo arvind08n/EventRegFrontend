@@ -68,7 +68,7 @@ class AdminEventList extends Component{
                     </div>
                 </div>
             </div>
-            <div class="card-footer w-100 text-muted">
+            <div class="card-footer  w-100 text-muted">
                 Event Entry Fee : {event.eventfee}$
 
                 
