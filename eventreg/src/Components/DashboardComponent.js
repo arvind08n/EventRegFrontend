@@ -3,6 +3,7 @@ import { Jumbotron, Button, Modal, ModalBody, ModalHeader, ModalFooter, Form, Fo
 import axios  from 'axios';
 import "../App.css"
 import AdminEventList from './AdminEventListComponent';
+import Header from './HeaderComponent';
 
 
 class Dashboard extends Component{
@@ -107,21 +108,22 @@ class Dashboard extends Component{
             );
         }
         return(
-            <div>
+            <div className="bg">
+                <Header />
                 <Jumbotron>
                     <div className="row">
                         <div className="col-12 col-md-5 m-1">
                             <h1>Welcome Back Admin..!!</h1>
                         </div>
                         <div className="col-12 col-md-5 m-1">
-                            <Button color="primary" size="lg" block onClick={this.toggleModal}>Create an event</Button>
+                            <Button color="primary" size="lg" outline="none" block onClick={this.toggleModal}><i class="fa fa-plus" aria-hidden="true" style={{marginRight: '7px'}} ></i>Create an event</Button>
                         </div>
                     </div>
                 </Jumbotron>
                 <div className="container">
                     {eventList}
                 </div>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.state.toggleModal}>
+                <Modal className="bg" isOpen={this.state.isModalOpen} toggle={this.state.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Create an Event</ModalHeader>
                     <ModalBody>
                         <Form onSubmit = {this.onSubmit}>
