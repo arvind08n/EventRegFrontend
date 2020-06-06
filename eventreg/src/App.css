@@ -66,7 +66,8 @@
 }
 
 .text{
-  color: "#ff0000"
+  color: "#ff0000";
+  text-align: center;
 }
 
 .navbar-dark {
@@ -120,14 +121,17 @@
   max-height: 100%;
 }
 
-/* .card{
-  
+.card{ 
   outline: none;
   margin: 50px;
-
   text-align: center;
-  border: 2px solid saddlebrown;
-} */
+  /* border: 2px solid saddlebrown; */
+  
+}
+
+.card:hover{
+  box-shadow: 5px 10px 20px 1px rgba(0,0,0,1);
+}
 
 .car{
   margin: 50px;
