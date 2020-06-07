@@ -39,7 +39,7 @@ class UpdateEvent extends Component{
 
     componentDidMount(){
         axios
-            .get('http://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/eventreg')
+            .get('https://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/eventreg')
             .then(res => {
                 this.setState({
 
@@ -75,7 +75,7 @@ class UpdateEvent extends Component{
         
 
         axios
-            .put(' https://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/update',data)
+            .put('https://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/update',data)
             .then(res => {
                 this.setState({
                     success: true
