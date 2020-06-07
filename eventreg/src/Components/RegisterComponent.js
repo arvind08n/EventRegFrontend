@@ -31,6 +31,8 @@ class UserReg extends Component{
         this.state={
             isModalRegister : false,
             authenticate: false,
+            alertt: false,
+            authenticateReg: false,
             userId: null,
             token: null
         };
@@ -55,7 +57,7 @@ class UserReg extends Component{
                 if(res.data.success){
                     console.log(res);
                     this.setState({
-                        authenticate: true,
+                        authenticateReg: true,
                         userId: res.data.userId,
                         token: res.data.token
                     });
@@ -84,8 +86,14 @@ class UserReg extends Component{
                     })
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => { 
+            console.log(err);
+            this.setState({
+                alertt: true 
+            })});
     }
+
+
 
     
 
@@ -99,6 +107,19 @@ class UserReg extends Component{
                 }
             }/>
         }
+        else if(this.state.authenticateReg){
+            return <Redirect to={
+                {
+                    pathname: "/" + localStorage.getItem("userId") + "/events",
+
+                }
+            }/>
+        }
+        if(this.state.alertt){
+            window.alert("Invalid user");
+        }
+
+        
         
         return(
             
