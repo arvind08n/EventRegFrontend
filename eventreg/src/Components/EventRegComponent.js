@@ -5,6 +5,8 @@ import {AvField, AvForm } from 'availity-reactstrap-validation';
 import '../App.css';
 import tick from '../assets/tick.png';
 import { Redirect } from 'react-router-dom';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 
 const Jumbo = () => {
     return(
@@ -177,7 +179,9 @@ class EventReg extends Component{
         if(this.state.success){
             return(
                 <div>
+                    <Header />
                     <Jumbo />
+                    
                     <div className="container">
                         <div className="tick">    
                             <h1>Registered Successfully !</h1>
@@ -186,7 +190,7 @@ class EventReg extends Component{
                             <p>Note the registration id for future references..</p>
                         </div>    
                     </div>
-                    
+                    <Footer />
 
                 </div>
             );
@@ -200,6 +204,7 @@ class EventReg extends Component{
                 return(
             
                     <div>
+                        <Header />
                         <Jumbo />
                         <div className="container">
                             {EventItem}
@@ -239,7 +244,7 @@ class EventReg extends Component{
         
                             </AvForm>
                             <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
-    
+                            
                             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                                 <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
                                 <ModalBody className="container">
@@ -256,6 +261,7 @@ class EventReg extends Component{
                             
     
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -263,6 +269,7 @@ class EventReg extends Component{
                 return(
             
                     <div>
+                        <Header />
                         <Jumbo />
                         {EventItem}
                         <div className="container">
@@ -302,8 +309,8 @@ class EventReg extends Component{
                                 
         
                             </AvForm>
-                            <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
-    
+                            <Button type="submit" value="Preview"  onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
+                            
                             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                                 <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
                                 <ModalBody className="container">
@@ -320,6 +327,7 @@ class EventReg extends Component{
                             
     
                         </div>
+                        <Footer />
                     </div>
                 );
             }

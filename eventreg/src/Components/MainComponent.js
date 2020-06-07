@@ -5,7 +5,7 @@ import Dashboard from './DashboardComponent';
 import EventList from './EventListComponent';
 import UserReg from './RegisterComponent';
 import EventReg from './EventRegComponent';
-import Success from './SuccessComponent';
+
 import UserList from './UserListComponent';
 import UpdateEvent from './UpdateEventComponent';
 
