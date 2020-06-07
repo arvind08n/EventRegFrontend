@@ -116,7 +116,6 @@ class UserList extends Component{
                         backgroundColor:[
                             'rgba(255,99,132,0.6)',
                             'rgba(54,162,235,0.6)',
-                            
                             'rgba(255,206,86,0.6)',
                             'rgba(75,192,192,0.6)'
     
@@ -194,7 +193,7 @@ class UserList extends Component{
                 <div className="row">
                 <div className="col-sm-2"></div>
                     <div className="col-sm-8">
-                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Group)</h3>
                         <Table striped bordered hover variant="dark" responsive>
                                 <thead>
                                     <tr>
@@ -218,7 +217,7 @@ class UserList extends Component{
                 <div className="row">
                 <div className="col-sm-2"></div>
                     <div className="col-sm-8">
-                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Corporate)</h3>
                         <Table striped bordered hover variant="dark" responsive>
                                 <thead>
                                     <tr>
@@ -242,7 +241,7 @@ class UserList extends Component{
                 <div className="row">
                 <div className="col-sm-2"></div>
                     <div className="col-sm-8">
-                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Others)</h3>
                         <Table striped bordered hover variant="dark" responsive>
                                 <thead>
                                     <tr>

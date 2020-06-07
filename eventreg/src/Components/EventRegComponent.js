@@ -9,7 +9,6 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 
 
-var timestamp = Date.now();
 
 const Jumboo = () => {
     return(
@@ -17,7 +16,7 @@ const Jumboo = () => {
             <div className="container">
                 <div className="row row-header">
                     <div className="col-12 col-sm-12">
-                        <h1>Successfull</h1>
+                        <h1>Successful</h1>
                         <p></p>
                     </div>
                 </div>
@@ -152,7 +151,8 @@ class EventReg extends Component{
 
     render(){
         
-        
+        var timestamp = Date.now();
+
         console.log(this.state.eventid);
         const event = this.state.event;
         const last = new Date(event.lastdate).getTime();
