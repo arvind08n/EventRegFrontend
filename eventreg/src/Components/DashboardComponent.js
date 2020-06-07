@@ -6,7 +6,7 @@ import AdminEventList from './AdminEventListComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 
-//dashboard 
+
 class Dashboard extends Component{
     constructor(props){
         super(props);
