@@ -31,9 +31,9 @@ class UserCard extends Component {
             <Table striped bordered hover variant="dark" responsive>
                 <tbody>
                     <tr>
-                    <td>{user.uniqueid}</td>
-                    <td>{user.fullname}</td>
-                    <td><Button color="danger" outline="none" onClick={this.toggleModal} >Click to view full details ...</Button></td>
+                    <td align="left">{user.uniqueid}</td>
+                    <td align="center">{user.fullname}</td>
+                    <td align="right"><Button color="danger" outline="none" onClick={this.toggleModal} >Click to view full details ...</Button></td>
                     </tr>
                 </tbody>
             </Table>
