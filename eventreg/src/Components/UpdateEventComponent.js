@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import "../App.css";
-import {  Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import {  Form, FormGroup, Label, Input, Button, Jumbotron} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+
+const Jumbo = () => {
+    return(
+        <Jumbotron className="jumbotron">
+            <div className="container">
+                <div className="row row-header">
+                    <div className="col-12 col-sm-12">    
+                        <h1>Update the Info</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </Jumbotron>
+    )
+}
+
 
 class UpdateEvent extends Component{
     constructor(props){
@@ -80,6 +98,9 @@ class UpdateEvent extends Component{
             }/>   
         }
         return(
+            <div>
+                <Header />
+                <Jumbo />
                 <div className="container">
                     <Form onSubmit = {this.onSubmit}>
                         
@@ -101,9 +122,11 @@ class UpdateEvent extends Component{
                             <Label htmlFor="eventfee">Event Fee</Label>
                             <Input type="eventfee" name="eventfee" value={this.state.eventfee} onChange={this.onChange} />
                         </FormGroup>
-                        <Button type="submit" color="danger" value="submit">Submit</Button>
+                        <Button type="submit" color="danger" btn-size="lg" block outline="none" value="submit"><i class="fa fa-edit" aria-hidden="true" style={{marginRight: '7px'}} ></i>Submit</Button>
                     </Form>
                 </div>
+                <Footer />
+            </div>
         );
     }
 }

@@ -13,10 +13,16 @@ const Jumbo = () => {
         <Jumbotron className="jumbotron">
             <div className="container">
                 <div className="row row-header">
-                    <div className="col-12 col-sm-12">
-                        <h1>Welcome</h1>
-                        <p></p>
+                <div className="col-12 col-sm-1">
+                        <i className="fa fa-dashboard fa-3x " aria-hidden="true" ></i>
+                        
                     </div>
+                    
+                <div className="col-12 col-sm-11">
+                        <h1>Dashboard</h1>
+                        
+                    </div>
+                    
                 </div>
             </div>
         </Jumbotron>
@@ -150,6 +156,8 @@ class UserList extends Component{
                         </div>
                         <div className="col-sm-8">
                             <div className="chart">
+                           
+                                <h2 className="tex"> <i className="fa fa-bar-chart " aria-hidden="true" style={{marginRight: '7px'}}></i>Chart</h2>
                             {/* <p className="tex">Total</p>
                                 <button  type="button" class="btn btn-success btn-circle btn-xl">{userList.length}</button> */}
                                 <Bar   
@@ -160,7 +168,8 @@ class UserList extends Component{
                                     options={{
                                     }}
                                 />
-                            </div>    
+                            </div>  
+                            <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(All Types)</h3>  
                             <Table striped bordered hover variant="dark" responsive>
                                 <thead>
                                     <tr>

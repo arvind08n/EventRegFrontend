@@ -20,7 +20,7 @@ function Footer(props) {
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright Upskill by Techzilla</p>
+                    <p>© Copyright Peaky_Blinders</p>
                 </div>
             </div>
         </div>
