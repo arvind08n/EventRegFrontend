@@ -164,7 +164,8 @@ class EventReg extends Component{
             </div>
             <div className="row">
                 <div className="col-12 col-sm-6" className="text top">
-                    <h4>Description</h4>
+                    <h4>Description
+                    </h4>
                     <p>{event.description}</p>
                     <h4>Event Fee: {event.eventfee}</h4>
                     <h6>Scroll down to register....</h6>
