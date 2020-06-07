@@ -66,7 +66,7 @@ class Dashboard extends Component{
         form.append("image",this.state.image);
         
 
-        axios.post('http://localhost:8082/admin/dashboard/createEvent', form,{headers: {"Content-type": "multipart/form-data"}})
+        axios.post(' https://stackhcker.herokuapp.com/admin/dashboard/createEvent', form,{headers: {"Content-type": "multipart/form-data"}})
             .then(res => {
                 this.setState({
                     image: '',
@@ -85,7 +85,7 @@ class Dashboard extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/admin/dashboard/events')
+            .get(' https://stackhcker.herokuapp.com/admin/dashboard/events')
             .then(res => {
                 this.setState({
                     events: res.data

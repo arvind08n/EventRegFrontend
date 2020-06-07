@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Jumbotron, Table, Modal} from 'reactstrap';
+import {Jumbotron, Table, Modal, Container} from 'reactstrap';
 import UserCard from './UserCardComponent';
 import {Bar, Line, Pie } from 'react-chartjs-2';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import TypeList from './TypeListComponent';
 
 var selfno, groupno, corpno, otherno;
 
@@ -45,7 +46,7 @@ class UserList extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/admin/dashboard/' + this.state.eventId + '/eventreg')
+            .get(' https://stackhcker.herokuapp.com/admin/dashboard/' + this.state.eventId + '/eventreg')
             .then(res => {
                 this.setState({
                     event: res.data
@@ -73,7 +74,10 @@ class UserList extends Component{
         let corporateList;
         let othersList;
         let userList;
-        
+        let selff;
+        let groupp;
+        let corpp;
+        let otherr;
         if(!users){
             userList = "There is no user records!";
         }
@@ -122,13 +126,31 @@ class UserList extends Component{
             }
             console.log(selectList);
 
-            if(this.state.select === "self"){
-                return(
-                    <div>
-                        
-                    </div>
-                );
-            }
+            
+            selff = selectList.map((type, k) => 
+
+                <TypeList type={type} key={k} />
+
+            );
+            
+            groupp = groupList.map((type, k) => 
+
+                <TypeList type={type} key={k} />
+
+            );
+            
+            corpp = corporateList.map((type, k) => 
+
+                <TypeList type={type} key={k} />
+
+            );
+            
+            otherr = othersList.map((type, k) => 
+
+                <TypeList type={type} key={k} />
+
+            );
+            
             
             userList = users.map((user, k) => 
 
@@ -140,6 +162,104 @@ class UserList extends Component{
             console.log(this.state.select);
             
         }
+        console.log(selectList);
+        if(this.state.select === "self"){
+            return(
+            <div>
+                <Jumbo />
+                <div className="row">
+                <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <Table striped bordered hover variant="dark" responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th> Name </th>
+                                
+                                    </tr>
+                                </thead>
+                        </Table>
+                        {selff}
+                    </div>
+                    <div className="col-sm-2"></div>
+                </div>
+            </div>
+            );
+        }
+        if(this.state.select === "group"){
+            return(
+            <div>
+                <Jumbo />
+                <div className="row">
+                <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <Table striped bordered hover variant="dark" responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th> Name </th>
+                                
+                                    </tr>
+                                </thead>
+                        </Table>
+                        {groupp}
+                    </div>
+                    <div className="col-sm-2"></div>
+                </div>
+            </div>
+            );
+        }
+        if(this.state.select === "corporate"){
+            return(
+            <div>
+                <Jumbo />
+                <div className="row">
+                <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <Table striped bordered hover variant="dark" responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th> Name </th>
+                                
+                                    </tr>
+                                </thead>
+                        </Table>
+                        {corpp}
+                    </div>
+                    <div className="col-sm-2"></div>
+                </div>
+            </div>
+            );
+        }
+        if(this.state.select === "others"){
+            return(
+            <div>
+                <Jumbo />
+                <div className="row">
+                <div className="col-sm-2"></div>
+                    <div className="col-sm-8">
+                        <h3 className="tex radius"><i className="fa fa-registered" aria-hidden="true" style={{marginRight: '7px'}}></i>Registered Users(Type Self)</h3>
+                        <Table striped bordered hover variant="dark" responsive>
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th> Name </th>
+                                
+                                    </tr>
+                                </thead>
+                        </Table>
+                        {otherr}
+                    </div>
+                    <div className="col-sm-2"></div>
+                </div>
+            </div>
+            );
+        }
+        
         console.log(selfno);
         
         return(
@@ -185,10 +305,10 @@ class UserList extends Component{
                                 
                                 
                                 <p className="tex">Corporate</p>                                        
-                                <button type="button" class="btn btn-danger btn-circle btn-xl">{corpno}</button>
+                                <button type="button" class="btn btn-danger btn-circle btn-xl" value="corporate" onClick={this.onChange}>{corpno}</button>
                                 <p className="tex">Others</p>
                             
-                            <button type="button" class="btn btn-success btn-circle btn-xl">{otherno}</button>
+                            <button type="button" class="btn btn-success btn-circle btn-xl" value="others" onClick={this.onChange}>{otherno}</button>
                         </div>
                     </div>
                 </div>

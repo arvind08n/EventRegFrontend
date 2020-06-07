@@ -4,17 +4,20 @@ import axios from 'axios';
 import {AvField, AvForm } from 'availity-reactstrap-validation';
 import '../App.css';
 import tick from '../assets/tick.png';
-import { Redirect } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 
-const Jumbo = () => {
+
+var timestamp = Date.now();
+
+const Jumboo = () => {
     return(
         <Jumbotron className="jumbotron">
             <div className="container">
                 <div className="row row-header">
                     <div className="col-12 col-sm-12">
-                        <h1>Welcome</h1>
+                        <h1>Successfull</h1>
                         <p></p>
                     </div>
                 </div>
@@ -22,8 +25,6 @@ const Jumbo = () => {
         </Jumbotron>
     )
 }
-
-var timestamp = Date.now();
 
 class EventReg extends Component{
     constructor(props){
@@ -104,7 +105,7 @@ class EventReg extends Component{
         console.log(data.uniqueid);
 
         axios
-            .post('http://localhost:8082/user/' + this.state.eventid + '/eventreg', data)
+            .post(' https://stackhcker.herokuapp.com/user/' + this.state.eventid + '/eventreg', data)
             .then(res => {
                 this.setState({
                     uniqueid: true,
@@ -132,7 +133,7 @@ class EventReg extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/user/' + this.state.eventid + '/eventreg')
+            .get(' https://stackhcker.herokuapp.com/user/' + this.state.eventid + '/eventreg')
             .then(res => {
                 this.setState({
                     event: res.data
@@ -150,6 +151,8 @@ class EventReg extends Component{
 
 
     render(){
+        
+        
         console.log(this.state.eventid);
         const event = this.state.event;
         const last = new Date(event.lastdate).getTime();
@@ -157,12 +160,25 @@ class EventReg extends Component{
         console.log(Date.now());
         console.log(event.lastdate);
         console.log(last);
-        
+        const Jumbo = () => {
+            return(
+                <Jumbotron className="jumbotron">
+                    <div className="container">
+                        <div className="row row-header">
+                            <div className="col-12 col-sm-12">
+                                <h1>{event.name}</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </Jumbotron>
+            )
+        }
             let EventItem = 
             <div>
                 <Header />
             <Container>
-            <h3 className="head">{event.name}</h3>
+            
             <img src={event.imageUrl} width="100%" height="100%" />    
             
             <div className="row">
@@ -188,13 +204,17 @@ class EventReg extends Component{
         if(this.state.success){
             return(
                 <div>
-                    <Jumbo />
+                    <Jumboo />
+                    <Header />
                     <div className="container">
                         <div className="tick">    
                             <h1>Registered Successfully !</h1>
                             <img width="100px" height="100px" src={tick}></img>
                             <h4>Registration ID: {timestamp}</h4>
                             <p>Note the registration id for future references..</p>
+                            <Link to={`/`}>
+                                <Button color="primary">Return to Home</Button>
+                            </Link>
                         </div>    
                     </div>
                     

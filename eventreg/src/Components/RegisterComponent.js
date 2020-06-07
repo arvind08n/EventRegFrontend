@@ -4,8 +4,7 @@ import '../App.css';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
-import Footer from './FooterComponent';
-import { Alert } from 'react-alert';
+
 
 
 
@@ -52,7 +51,7 @@ class UserReg extends Component{
     handleSignup(event) {
         this.toggleModal();
         event.preventDefault();
-        axios.post("http://localhost:8082/user/signup", { name: this.fullname.value, username: this.user.value, password: this.pass.value, dob: this.dob.value, email: this.email.value, mobile: this.mobile.value })
+        axios.post(" https://stackhcker.herokuapp.com/user/signup", { name: this.fullname.value, username: this.user.value, password: this.pass.value, dob: this.dob.value, email: this.email.value, mobile: this.mobile.value })
             .then((res) => {
                 if(res.data.success){
                     console.log(res);
@@ -72,7 +71,7 @@ class UserReg extends Component{
         console.log(event);
         console.log(this.username.value);
         event.preventDefault();
-        axios.post("http://localhost:8082/user/login", { username: this.username.value, password: this.password.value})
+        axios.post(" https://stackhcker.herokuapp.com/user/login", { username: this.username.value, password: this.password.value})
             .then((res)=> {
                 if(res.data.success){
                     var red = "/" + res.data.userId + "/events";
@@ -128,7 +127,7 @@ class UserReg extends Component{
             <div className="container">
                 <h1>Login</h1>
                 <AvForm onSubmit={this.handleLogin}>
-                    <AvField name="username" id="username" label="Username" type="text" innerRef={(input)=> this.username=input }  />
+                    <AvField name="username" id="username" label="Username" type="text" innerRef={(input)=> this.username=input }  ></AvField>
                     <AvField name="password" id="password" label="Password" type="password" innerRef={(input)=> this.password=input }  />
 
                     <Button type="submit" value="submit" color="primary" size="btn-lg" block><i className="fa fa-sign-in " aria-hidden="true" style={{marginRight: '7px'}}></i>Login</Button>
@@ -187,7 +186,7 @@ class UserReg extends Component{
                         </AvForm>
                     </ModalBody>
             </Modal>
-            <Footer />
+            
             </div>
 
         

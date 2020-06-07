@@ -30,7 +30,7 @@ class AdminEventList extends Component{
         
         
         axios
-            .delete("http://localhost:8082/admin/dashboard/"+eventid)
+            .delete(" https://stackhcker.herokuapp.com/admin/dashboard/"+eventid)
             .then(res => {
                 console.log("successful");
                 this.setState({
@@ -58,7 +58,7 @@ class AdminEventList extends Component{
         <div class="card car">
             <div class="row no-gutters">
                 <div class="col-auto">
-                    <img src={event.imageUrl} width="410px" height="410px" class="img-fluid" alt=""/>
+                    <img src={event.imageUrl} width="350px" height="400px" class="img-fluid" alt=""/>
                 </div>
                 <div class="col">
                     <div class="card-block px-2">

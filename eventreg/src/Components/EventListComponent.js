@@ -39,7 +39,7 @@ class EventList extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/user/:userId/events')
+            .get(' https://stackhcker.herokuapp.com/user/:userId/events')
             .then(res => {
                 this.setState({
                     events: res.data

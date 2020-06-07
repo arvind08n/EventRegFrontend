@@ -75,7 +75,7 @@ class UpdateEvent extends Component{
         
 
         axios
-            .put('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/update',data)
+            .put(' https://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/update',data)
             .then(res => {
                 this.setState({
                     success: true
@@ -102,6 +102,7 @@ class UpdateEvent extends Component{
                 <Header />
                 <Jumbo />
                 <div className="container">
+                    <div className="mar">
                     <Form onSubmit = {this.onSubmit}>
                         
                         <FormGroup>
@@ -124,6 +125,7 @@ class UpdateEvent extends Component{
                         </FormGroup>
                         <Button type="submit" color="danger" btn-size="lg" block outline="none" value="submit"><i class="fa fa-edit" aria-hidden="true" style={{marginRight: '7px'}} ></i>Submit</Button>
                     </Form>
+                </div>
                 </div>
                 <Footer />
             </div>
