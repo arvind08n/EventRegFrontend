@@ -39,7 +39,7 @@ class UpdateEvent extends Component{
 
     componentDidMount(){
         axios
-            .get('http://localhost:8082/admin/dashboard/'+this.state.eventId+'/eventreg')
+            .get('http://stackhcker.herokuapp.com/admin/dashboard/'+this.state.eventId+'/eventreg')
             .then(res => {
                 this.setState({
 
