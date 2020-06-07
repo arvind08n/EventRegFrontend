@@ -157,7 +157,11 @@ class EventReg extends Component{
         console.log(Date.now());
         console.log(event.lastdate);
         console.log(last);
-        let EventItem = <Container>
+        
+            let EventItem = 
+            <div>
+                <Header />
+            <Container>
             <h3 className="head">{event.name}</h3>
             <img src={event.imageUrl} width="100%" height="100%" />    
             
@@ -166,22 +170,25 @@ class EventReg extends Component{
                     <h4>Description
                     </h4>
                     <p>{event.description}</p>
-                    <h4>Event Fee: {event.eventfee}$</h4>
+                    <h4>Event Fee: {event.eventfee}</h4>
                     <h6>Scroll down to register....</h6>
                 </div>
             </div>
             
             
         </Container>
+        
+        </div>
+            
+            
+        
 
         
 
         if(this.state.success){
             return(
                 <div>
-                    <Header />
                     <Jumbo />
-                    
                     <div className="container">
                         <div className="tick">    
                             <h1>Registered Successfully !</h1>
@@ -190,21 +197,20 @@ class EventReg extends Component{
                             <p>Note the registration id for future references..</p>
                         </div>    
                     </div>
-                    <Footer />
+                    
 
                 </div>
             );
         }
         if(currentDate > last){
             return(
-            <div>Oops...Event Ended</div>);
+            <div></div>);
         }
         else{
             if(this.state.type === "Self"){
                 return(
             
                     <div>
-                        <Header />
                         <Jumbo />
                         <div className="container">
                             {EventItem}
@@ -244,7 +250,7 @@ class EventReg extends Component{
         
                             </AvForm>
                             <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
-                            
+    
                             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                                 <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
                                 <ModalBody className="container">
@@ -269,11 +275,9 @@ class EventReg extends Component{
                 return(
             
                     <div>
-                        <Header />
                         <Jumbo />
-                        {EventItem}
                         <div className="container">
-                            
+                            {EventItem}
                             <h4 className="top">Registration Form:</h4>
                             <AvForm className="top" onSubmit={this.onSubmit}>
                                 <AvField name="fullname" label="Full Name:" id="fullname" type="text" innerref={(input) => this.fullname = input  } value={this.state.fullname} onChange={this.onChange} validate={{
@@ -309,8 +313,8 @@ class EventReg extends Component{
                                 
         
                             </AvForm>
-                            <Button type="submit" value="Preview"  onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
-                            
+                            <Button type="submit" value="Preview" onClick={this.toggleModal} className="topp" color="warning" outline="none" size="btn-lg" block>Preview</Button>
+    
                             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                                 <ModalHeader toggle={this.toggleModal}>Preview</ModalHeader>
                                 <ModalBody className="container">
