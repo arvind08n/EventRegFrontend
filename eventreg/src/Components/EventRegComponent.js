@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Jumbotron, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import {Jumbotron, Button, Modal, ModalBody, ModalHeader, Container } from 'reactstrap';
 import axios from 'axios';
 import {AvField, AvForm } from 'availity-reactstrap-validation';
 import '../App.css';
@@ -155,26 +155,22 @@ class EventReg extends Component{
         console.log(Date.now());
         console.log(event.lastdate);
         console.log(last);
-        let EventItem = <div >
+        let EventItem = <Container>
             <h3 className="head">{event.name}</h3>
-            <div className="row">
-                <div className="col-12 col-sm-4">
-                    <img src={event.imageUrl}  className="unstyle" />
-                    
-                </div>
-            </div>
+            <img src={event.imageUrl} width="100%" height="100%" />    
+            
             <div className="row">
                 <div className="col-12 col-sm-6" className="text top">
                     <h4>Description
                     </h4>
                     <p>{event.description}</p>
-                    <h4>Event Fee: {event.eventfee}</h4>
+                    <h4>Event Fee: {event.eventfee}$</h4>
                     <h6>Scroll down to register....</h6>
                 </div>
             </div>
             
             
-        </div>
+        </Container>
 
         
 
@@ -197,7 +193,7 @@ class EventReg extends Component{
         }
         if(currentDate > last){
             return(
-            <div></div>);
+            <div>Oops...Event Ended</div>);
         }
         else{
             if(this.state.type === "Self"){
@@ -268,8 +264,9 @@ class EventReg extends Component{
             
                     <div>
                         <Jumbo />
+                        {EventItem}
                         <div className="container">
-                            {EventItem}
+                            
                             <h4 className="top">Registration Form:</h4>
                             <AvForm className="top" onSubmit={this.onSubmit}>
                                 <AvField name="fullname" label="Full Name:" id="fullname" type="text" innerref={(input) => this.fullname = input  } value={this.state.fullname} onChange={this.onChange} validate={{

@@ -38,7 +38,7 @@ class EventCard extends Component {
                             {event.lastdate}
                         </Moment>
                 </Card.Text>
-                <Button variant="primary" disabled>Event Ended</Button>
+                <Button variant="primary" size="lg" outline="none" block disabled>Event Ended</Button>
                 </Card.Body>
                 </Card>
             </CardDeck>
