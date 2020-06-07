@@ -1,10 +1,11 @@
 import React , { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Jumbotron } from 'reactstrap';
+import { Jumbotron, Container } from 'reactstrap';
 import EventCard from './EventCardComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+
 import "../App.css";
 
 const Jumbo = () => {
@@ -58,9 +59,7 @@ class EventList extends Component{
             eventList = "There is no events record!";
         }
         else{
-            eventList = events.map((event, k) => 
-                <EventCard event={event} key={k} />
-            );
+            
         }
 
         return(
@@ -79,10 +78,19 @@ class EventList extends Component{
 
                         </div>
                     </div>
-                    <div className="list">
-                    
-                        {eventList}
-                    </div>
+                    <Container>
+                        <div className="row">
+                            {eventList = events.map((event, k) => {
+                                return(
+                                    <div className="col-12 col-md-4">
+                                        <EventCard event={event} key={k} />
+                                    </div>
+                                )
+                            } 
+                        
+                            )}
+                        </div>
+                    </Container>
                 </div>
             </div>
             <Footer />

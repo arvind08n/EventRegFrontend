@@ -48,14 +48,14 @@
   color: #ff0000;
   text-align: center;
 }
-
+/* 
 .list {
   display: grid;
   margin: auto;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   grid-gap: 2em;
-}
+} */
 
 .card-container {
   width: 250px;
